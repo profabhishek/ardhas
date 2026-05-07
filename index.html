@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ardhas Technology — AI-Powered Enterprise Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#08090a;--ink2:#1a1c1f;--ink3:#2d3038;
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#f5e4b0;
+  --white:#fafaf8;--off:#f2f0ea;--muted:#6b6f7a;
+  --accent:#1a6fff;--accent2:#0d4fd4;
+  --green:#0e9f6e;--red:#e53e3e;
+  --radius:16px;--radius-sm:8px;
+  font-size:16px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--ink);color:var(--white);
+  overflow-x:hidden;line-height:1.6;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3rem;
+  background:rgba(8,9,10,0.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,168,76,0.15);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;
+  letter-spacing:-0.02em;color:var(--white);text-decoration:none;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:rgba(250,250,248,0.7);text-decoration:none;
+  font-size:0.875rem;font-weight:500;letter-spacing:0.03em;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  background:var(--gold);color:var(--ink);
+  border:none;padding:0.6rem 1.5rem;border-radius:50px;
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.875rem;
+  cursor:pointer;transition:all 0.2s;letter-spacing:0.02em;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:8rem 3rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 90% 10%, rgba(26,111,255,0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #08090a 0%, #0e1014 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
+}
+.hero-glow{
+  position:absolute;top:20%;right:5%;
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-content{position:relative;max-width:700px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);
+  border-radius:50px;padding:0.4rem 1rem;margin-bottom:2rem;
+  font-size:0.8rem;font-weight:500;letter-spacing:0.05em;color:var(--gold2);
+  text-transform:uppercase;
+}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:800;line-height:1.0;
+  letter-spacing:-0.03em;
+  margin-bottom:1.5rem;
+}
+.hero h1 .line1{display:block;color:var(--white)}
+.hero h1 .line2{display:block;color:var(--gold)}
+.hero h1 .line3{display:block;color:rgba(250,250,248,0.4)}
+.hero-sub{
+  font-size:1.125rem;color:rgba(250,250,248,0.6);
+  max-width:560px;line-height:1.7;margin-bottom:2.5rem;
+  font-weight:300;
+}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--gold);color:var(--ink);
+  padding:0.9rem 2rem;border-radius:50px;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;
+  border:none;cursor:pointer;transition:all 0.25s;
+  display:inline-flex;align-items:center;gap:0.5rem;
+  text-decoration:none;
+}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,0.3)}
+.btn-ghost{
+  background:transparent;color:var(--white);
+  padding:0.9rem 2rem;border-radius:50px;
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;
+  border:1px solid rgba(250,250,248,0.2);cursor:pointer;transition:all 0.25s;
+  display:inline-flex;align-items:center;gap:0.5rem;
+  text-decoration:none;
+}
+.btn-ghost:hover{border-color:rgba(250,250,248,0.5);background:rgba(250,250,248,0.05)}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:4rem;
+  padding-top:3rem;border-top:1px solid rgba(250,250,248,0.08);
+}
+.stat-item{display:flex;flex-direction:column;gap:0.25rem}
+.stat-num{
+  font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;
+  color:var(--gold);letter-spacing:-0.02em;
+}
+.stat-label{font-size:0.8rem;color:rgba(250,250,248,0.5);letter-spacing:0.05em;text-transform:uppercase}
+
+/* ── FLOATING AI CARD ── */
+.hero-visual{
+  position:absolute;right:3rem;top:50%;transform:translateY(-50%);
+  width:400px;
+}
+.ai-card{
+  background:rgba(14,16,20,0.9);
+  border:1px solid rgba(201,168,76,0.2);
+  border-radius:24px;padding:1.5rem;
+  backdrop-filter:blur(20px);
+}
+.ai-card-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem}
+.ai-orb{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,#c9a84c,#1a6fff);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;
+}
+.ai-card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem}
+.ai-card-sub{font-size:0.75rem;color:rgba(250,250,248,0.4)}
+.ai-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem}
+.ai-metric{
+  background:rgba(250,250,248,0.04);border-radius:12px;padding:0.75rem;
+  border:1px solid rgba(250,250,248,0.06);
+}
+.ai-metric-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--gold)}
+.ai-metric-lab{font-size:0.7rem;color:rgba(250,250,248,0.4);margin-top:0.15rem}
+.ai-bar-section{margin-bottom:1rem}
+.ai-bar-label{display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(250,250,248,0.5);margin-bottom:0.4rem}
+.ai-bar-track{height:6px;background:rgba(250,250,248,0.06);border-radius:50px;overflow:hidden}
+.ai-bar-fill{height:100%;border-radius:50px;transition:width 1s ease}
+.ai-bar-fill.gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.ai-bar-fill.blue{background:linear-gradient(90deg,var(--accent),#60a5fa)}
+.ai-bar-fill.green{background:linear-gradient(90deg,var(--green),#34d399)}
+.ai-status{
+  display:flex;align-items:center;gap:0.5rem;
+  background:rgba(14,159,110,0.08);border:1px solid rgba(14,159,110,0.2);
+  border-radius:8px;padding:0.5rem 0.75rem;
+  font-size:0.75rem;color:rgba(14,159,110,0.9);
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
+
+/* ── SECTION ── */
+section{padding:6rem 3rem}
+.section-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);
+  border-radius:50px;padding:0.35rem 0.9rem;
+  font-size:0.75rem;font-weight:500;letter-spacing:0.06em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:1.25rem;
+}
+.section-title{
+  font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:800;letter-spacing:-0.025em;line-height:1.1;
+  margin-bottom:1rem;
+}
+.section-sub{
+  font-size:1.1rem;color:rgba(250,250,248,0.55);
+  max-width:560px;line-height:1.7;font-weight:300;
+}
+
+/* ── AI SERVICES ── */
+.ai-services{background:#0a0c10}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  margin-top:4rem;
+}
+.service-card{
+  background:rgba(250,250,248,0.03);
+  border:1px solid rgba(250,250,248,0.07);
+  border-radius:20px;padding:2rem;
+  transition:all 0.35s;cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 0% 0%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  opacity:0;transition:opacity 0.35s;
+}
+.service-card:hover::before{opacity:1}
+.service-card:hover{
+  border-color:rgba(201,168,76,0.3);
+  transform:translateY(-4px);
+}
+.service-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:1.25rem;
+  background:rgba(201,168,76,0.1);
+  border:1px solid rgba(201,168,76,0.15);
+}
+.service-card h3{
+  font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;
+  margin-bottom:0.5rem;color:var(--white);
+}
+.service-card p{
+  font-size:0.875rem;color:rgba(250,250,248,0.5);
+  line-height:1.6;
+}
+.service-tag{
+  display:inline-block;margin-top:1rem;
+  background:rgba(201,168,76,0.1);color:var(--gold);
+  padding:0.25rem 0.75rem;border-radius:50px;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+}
+.service-card.featured{
+  background:linear-gradient(135deg, rgba(201,168,76,0.12), rgba(26,111,255,0.06));
+  border-color:rgba(201,168,76,0.3);
+}
+.service-card.featured .service-icon{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;
+}
+
+/* ── ABOUT ── */
+.about-section{background:linear-gradient(135deg, #0a0c10 0%, #0e1118 100%);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-big-num{
+  font-family:'Syne',sans-serif;font-size:clamp(6rem,14vw,12rem);
+  font-weight:800;line-height:1;
+  background:linear-gradient(135deg,rgba(201,168,76,0.3),rgba(201,168,76,0.05));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  user-select:none;
+}
+.about-stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.about-stat-card{
+  background:rgba(250,250,248,0.03);border:1px solid rgba(250,250,248,0.06);
+  border-radius:16px;padding:1.25rem;
+}
+.about-stat-card .num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--gold);}
+.about-stat-card .lab{font-size:0.8rem;color:rgba(250,250,248,0.4);margin-top:0.25rem}
+.about-content .tagline{
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;
+  color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem;
+}
+
+/* ── TECH STRIP ── */
+.tech-strip{
+  background:#070810;padding:3rem;
+  border-top:1px solid rgba(250,250,248,0.04);
+  border-bottom:1px solid rgba(250,250,248,0.04);
+  overflow:hidden;
+}
+.tech-scroll{
+  display:flex;gap:3rem;align-items:center;
+  animation:scroll 30s linear infinite;width:max-content;
+}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tech-item{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(250,250,248,0.2);white-space:nowrap;
+  display:flex;align-items:center;gap:1rem;
+}
+.tech-item::after{content:'◆';color:rgba(201,168,76,0.3);font-size:0.5rem}
+
+/* ── INDUSTRIES ── */
+.industries-section{background:#0a0c10}
+.industries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:4rem}
+.industry-card{
+  background:rgba(250,250,248,0.02);border:1px solid rgba(250,250,248,0.06);
+  border-radius:16px;padding:1.5rem;text-align:center;
+  transition:all 0.3s;cursor:pointer;
+}
+.industry-card:hover{
+  background:rgba(201,168,76,0.06);
+  border-color:rgba(201,168,76,0.25);transform:translateY(-3px);
+}
+.industry-icon{font-size:2rem;margin-bottom:0.75rem;display:block}
+.industry-name{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;color:var(--white)}
+.industry-desc{font-size:0.75rem;color:rgba(250,250,248,0.4);margin-top:0.4rem}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:#070810}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.testi-card{
+  background:rgba(250,250,248,0.03);border:1px solid rgba(250,250,248,0.07);
+  border-radius:20px;padding:2rem;
+}
+.testi-stars{color:var(--gold);font-size:0.85rem;margin-bottom:1rem;letter-spacing:2px}
+.testi-text{
+  font-size:0.95rem;color:rgba(250,250,248,0.7);
+  line-height:1.7;font-style:italic;margin-bottom:1.5rem;font-weight:300;
+}
+.testi-author{display:flex;align-items:center;gap:0.75rem}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;color:var(--ink);
+}
+.testi-name{font-weight:500;font-size:0.875rem;color:var(--white)}
+.testi-role{font-size:0.75rem;color:rgba(250,250,248,0.4)}
+
+/* ── CTA ── */
+.cta-section{
+  background:linear-gradient(135deg, #0a0c10, #0e1118);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:300px;
+  background:radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cta-section .section-title{margin:0 auto 1rem;max-width:700px}
+.cta-section .section-sub{margin:0 auto 2.5rem}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{
+  background:#05060a;border-top:1px solid rgba(250,250,248,0.06);
+  padding:4rem 3rem 2rem;
+}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{
+  font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;
+  color:var(--white);margin-bottom:0.75rem;
+}
+.footer-brand .logo span{color:var(--gold)}
+.footer-brand p{font-size:0.875rem;color:rgba(250,250,248,0.4);line-height:1.6;max-width:280px}
+.footer-col h4{
+  font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(250,250,248,0.3);margin-bottom:1rem;
+}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.5rem}
+.footer-col ul li a{font-size:0.875rem;color:rgba(250,250,248,0.5);text-decoration:none;transition:color 0.2s;}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-bottom{
+  padding-top:2rem;border-top:1px solid rgba(250,250,248,0.05);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom p{font-size:0.8rem;color:rgba(250,250,248,0.3)}
+.footer-contact a{color:var(--gold);text-decoration:none}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.22,1,0.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero-visual{display:none}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .industries-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:7rem 1.5rem 4rem}
+  section{padding:4rem 1.5rem}
+  .services-grid{grid-template-columns:1fr}
+  .industries-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{gap:1.5rem}
+  .stat-num{font-size:2rem}
+  footer{padding:3rem 1.5rem 2rem}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>Ardhas</span> Technology</a>
+  <ul class="nav-links">
+    <li><a href="#ai-services">AI Services</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Get Started →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      AI-Powered Enterprise Solutions · 60+ Countries
+    </div>
+    <h1>
+      <span class="line1">Intelligence</span>
+      <span class="line2">Engineered</span>
+      <span class="line3">For Tomorrow</span>
+    </h1>
+    <p class="hero-sub">Ardhas Technology fuses a decade of IT excellence with frontier AI capabilities — delivering transformative solutions that redefine how businesses operate, scale, and compete globally.</p>
+    <div class="hero-actions">
+      <a href="#ai-services" class="btn-primary">Explore AI Solutions ↗</a>
+      <a href="#about" class="btn-ghost">Our Story →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">60+</span><span class="stat-label">Countries Served</span></div>
+      <div class="stat-item"><span class="stat-num">100+</span><span class="stat-label">Projects Delivered</span></div>
+      <div class="stat-item"><span class="stat-num">10+</span><span class="stat-label">Years of Excellence</span></div>
+      <div class="stat-item"><span class="stat-num">100+</span><span class="stat-label">Expert Engineers</span></div>
+    </div>
+  </div>
+
+  <!-- Floating AI Card -->
+  <div class="hero-visual">
+    <div class="ai-card">
+      <div class="ai-card-header">
+        <div class="ai-orb">🧠</div>
+        <div>
+          <div class="ai-card-title">Ardhas AI Engine</div>
+          <div class="ai-card-sub">Enterprise Intelligence Platform</div>
+        </div>
+      </div>
+      <div class="ai-metrics">
+        <div class="ai-metric"><div class="ai-metric-val">99.8%</div><div class="ai-metric-lab">Model Accuracy</div></div>
+        <div class="ai-metric"><div class="ai-metric-val">3.2ms</div><div class="ai-metric-lab">Avg Response</div></div>
+        <div class="ai-metric"><div class="ai-metric-val">1M+</div><div class="ai-metric-lab">API Calls/day</div></div>
+        <div class="ai-metric"><div class="ai-metric-val">10+</div><div class="ai-metric-lab">AI Models</div></div>
+      </div>
+      <div class="ai-bar-section">
+        <div class="ai-bar-label"><span>Predictive Analytics</span><span>94%</span></div>
+        <div class="ai-bar-track"><div class="ai-bar-fill gold" style="width:94%"></div></div>
+      </div>
+      <div class="ai-bar-section">
+        <div class="ai-bar-label"><span>NLP Processing</span><span>97%</span></div>
+        <div class="ai-bar-track"><div class="ai-bar-fill blue" style="width:97%"></div></div>
+      </div>
+      <div class="ai-bar-section" style="margin-bottom:1rem">
+        <div class="ai-bar-label"><span>Computer Vision</span><span>91%</span></div>
+        <div class="ai-bar-track"><div class="ai-bar-fill green" style="width:91%"></div></div>
+      </div>
+      <div class="ai-status">
+        <span class="status-dot"></span>
+        All AI systems operational · Updated 2s ago
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STRIP -->
+<div class="tech-strip">
+  <div class="tech-scroll">
+    <div class="tech-item">Generative AI</div>
+    <div class="tech-item">Large Language Models</div>
+    <div class="tech-item">Machine Learning</div>
+    <div class="tech-item">Computer Vision</div>
+    <div class="tech-item">Predictive Analytics</div>
+    <div class="tech-item">Natural Language Processing</div>
+    <div class="tech-item">AI Agents</div>
+    <div class="tech-item">Neural Networks</div>
+    <div class="tech-item">Deep Learning</div>
+    <div class="tech-item">RAG Systems</div>
+    <div class="tech-item">MLOps</div>
+    <div class="tech-item">Edge AI</div>
+    <div class="tech-item">Generative AI</div>
+    <div class="tech-item">Large Language Models</div>
+    <div class="tech-item">Machine Learning</div>
+    <div class="tech-item">Computer Vision</div>
+    <div class="tech-item">Predictive Analytics</div>
+    <div class="tech-item">Natural Language Processing</div>
+    <div class="tech-item">AI Agents</div>
+    <div class="tech-item">Neural Networks</div>
+    <div class="tech-item">Deep Learning</div>
+    <div class="tech-item">RAG Systems</div>
+    <div class="tech-item">MLOps</div>
+    <div class="tech-item">Edge AI</div>
+  </div>
+</div>
+
+<!-- AI SERVICES -->
+<section class="ai-services fade-up" id="ai-services">
+  <div class="section-badge">★ New AI Capabilities</div>
+  <h2 class="section-title">AI-Powered<br>Intelligence Services</h2>
+  <p class="section-sub">Next-generation artificial intelligence solutions built to transform every facet of your enterprise operations.</p>
+  <div class="services-grid">
+    <div class="service-card featured">
+      <div class="service-icon">⚡</div>
+      <h3>Generative AI & LLM Solutions</h3>
+      <p>Custom large language model deployments, RAG architectures, and enterprise copilots that automate knowledge work and accelerate decision-making.</p>
+      <span class="service-tag">Core AI</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <h3>Intelligent AI Agents</h3>
+      <p>Autonomous AI agents that perceive, reason, and act — orchestrating complex multi-step workflows with minimal human intervention.</p>
+      <span class="service-tag">Automation</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👁️</div>
+      <h3>Computer Vision & AI</h3>
+      <p>Real-time image recognition, quality inspection, medical imaging analysis, and visual intelligence systems for industrial and commercial use.</p>
+      <span class="service-tag">Vision AI</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Predictive Analytics & ML</h3>
+      <p>Machine learning pipelines that convert your raw data into forward-looking forecasts, anomaly detection, and strategic insights.</p>
+      <span class="service-tag">Machine Learning</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💬</div>
+      <h3>Conversational AI & NLP</h3>
+      <p>Intelligent chatbots, voice assistants, sentiment analysis, and document understanding systems that speak your customers' language.</p>
+      <span class="service-tag">NLP</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>AI-Driven Cybersecurity</h3>
+      <p>Behavioral AI models that detect threats in real-time, predict attack vectors, and autonomously respond before breaches occur.</p>
+      <span class="service-tag">Security AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXISTING SERVICES -->
+<section id="services" style="background:#070810" class="fade-up">
+  <div class="section-badge">Our Expertise</div>
+  <h2 class="section-title">Full-Spectrum<br>Technology Services</h2>
+  <p class="section-sub">A complete portfolio of IT services — from development to deployment — backing every AI initiative with engineering excellence.</p>
+  <div class="services-grid" style="margin-top:4rem">
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(26,111,255,0.1);border-color:rgba(26,111,255,0.2)">💻</div>
+      <h3>Application Development</h3>
+      <p>Enterprise-grade applications built with modern architectures. We turn complex requirements into elegant, scalable software products.</p>
+      <span class="service-tag" style="background:rgba(26,111,255,0.1);color:#60a5fa">Dev</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(14,159,110,0.1);border-color:rgba(14,159,110,0.2)">✅</div>
+      <h3>Software Quality Assurance</h3>
+      <p>Comprehensive testing strategies — automated, performance, security — ensuring flawless delivery and exceptional user experiences.</p>
+      <span class="service-tag" style="background:rgba(14,159,110,0.1);color:#34d399">QA</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.2)">☁️</div>
+      <h3>Cloud Services</h3>
+      <p>Seamless cloud migrations, multi-cloud architecture, and managed infrastructure that delivers agility, performance, and cost efficiency.</p>
+      <span class="service-tag" style="background:rgba(139,92,246,0.1);color:#c4b5fd">Cloud</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.2)">🔒</div>
+      <h3>Cybersecurity</h3>
+      <p>End-to-end security solutions — threat intelligence, penetration testing, compliance management — protecting your critical assets.</p>
+      <span class="service-tag" style="background:rgba(245,158,11,0.1);color:#fcd34d">Security</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.2)">🌐</div>
+      <h3>IoT Integration</h3>
+      <p>Expert IoT ecosystems from device connectivity to edge analytics — bridging the physical and digital worlds intelligently.</p>
+      <span class="service-tag" style="background:rgba(239,68,68,0.1);color:#fca5a5">IoT</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2)">🎨</div>
+      <h3>UI/UX Design</h3>
+      <p>Human-centered design that merges aesthetics with function — creating intuitive interfaces that delight users and build brand loyalty.</p>
+      <span class="service-tag" style="background:rgba(16,185,129,0.1);color:#6ee7b7">Design</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(99,102,241,0.1);border-color:rgba(99,102,241,0.2)">📈</div>
+      <h3>Digital Marketing</h3>
+      <p>AI-powered digital marketing that finds your audience, crafts compelling narratives, and delivers measurable ROI across every channel.</p>
+      <span class="service-tag" style="background:rgba(99,102,241,0.1);color:#a5b4fc">Marketing</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(20,184,166,0.1);border-color:rgba(20,184,166,0.2)">🤝</div>
+      <h3>Virtual Assistants</h3>
+      <p>Dedicated remote professionals providing executive-level support — administrative, technical, and customer-facing — tailored to your workflow.</p>
+      <span class="service-tag" style="background:rgba(20,184,166,0.1);color:#99f6e4">Support</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(249,115,22,0.1);border-color:rgba(249,115,22,0.2)">📂</div>
+      <h3>Document Management</h3>
+      <p>Intelligent document workflows — capture, classify, store, and retrieve with AI-enhanced search and compliance-ready audit trails.</p>
+      <span class="service-tag" style="background:rgba(249,115,22,0.1);color:#fdba74">DMS</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.2)">🌿</div>
+      <h3>EHS Management System</h3>
+      <p>A comprehensive, customizable EHS platform that ensures regulatory compliance, reduces incidents, and builds a zero-harm workplace culture.</p>
+      <span class="service-tag" style="background:rgba(168,85,247,0.1);color:#d8b4fe">EHS</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon" style="background:rgba(6,182,212,0.1);border-color:rgba(6,182,212,0.2)">📡</div>
+      <h3>Data & Analytics</h3>
+      <p>From data engineering to BI dashboards — empowering organizations with real-time insights that inform every strategic decision.</p>
+      <span class="service-tag" style="background:rgba(6,182,212,0.1);color:#67e8f9">Data</span>
+    </div>
+    <div class="service-card" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.2);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+      <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.75rem">Ready to Transform?</div>
+      <p style="font-size:0.85rem;color:rgba(250,250,248,0.5);margin-bottom:1.25rem">Let's architect your next breakthrough together</p>
+      <a href="#contact" class="btn-primary" style="font-size:0.875rem;padding:0.7rem 1.5rem">Talk to an Expert →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section fade-up" id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-big-num">10+</div>
+      <div class="about-stat-cards">
+        <div class="about-stat-card"><div class="num">60+</div><div class="lab">Countries worldwide</div></div>
+        <div class="about-stat-card"><div class="num">100+</div><div class="lab">Enterprise clients</div></div>
+        <div class="about-stat-card"><div class="num">100+</div><div class="lab">Expert engineers</div></div>
+        <div class="about-stat-card"><div class="num">99%</div><div class="lab">Client retention</div></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="tagline">Who We Are</div>
+      <h2 class="section-title">A Decade of<br>Digital Excellence</h2>
+      <p style="color:rgba(250,250,248,0.6);line-height:1.8;margin-bottom:1.5rem;font-weight:300">Ardhas Technology has grown from a specialized consulting firm into a global technology leader — trusted by enterprises in over 60 countries to architect and deliver the solutions that define their future.</p>
+      <p style="color:rgba(250,250,248,0.6);line-height:1.8;margin-bottom:2rem;font-weight:300">Our multidisciplinary teams combine deep domain expertise with cutting-edge AI capabilities, ensuring every engagement delivers measurable business impact — not just technology for technology's sake.</p>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+        <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:500">ISO Certified</span>
+        <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:500">GDPR Compliant</span>
+        <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:500">AWS Partner</span>
+        <span style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);color:var(--gold);padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:500">Microsoft Gold</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries-section fade-up" id="industries">
+  <div class="section-badge">Industry Verticals</div>
+  <h2 class="section-title">Built for Every<br>Industry</h2>
+  <p class="section-sub">Deep domain expertise across the sectors where AI and technology deliver the greatest competitive advantage.</p>
+  <div class="industries-grid">
+    <div class="industry-card"><span class="industry-icon">🏥</span><div class="industry-name">Healthcare & Life Sciences</div><div class="industry-desc">AI diagnostics, clinical workflows, compliance</div></div>
+    <div class="industry-card"><span class="industry-icon">🏦</span><div class="industry-name">Banking & Financial Services</div><div class="industry-desc">Risk AI, fraud detection, RegTech</div></div>
+    <div class="industry-card"><span class="industry-icon">🏭</span><div class="industry-name">Manufacturing & Industry</div><div class="industry-desc">Predictive maintenance, quality AI, IoT</div></div>
+    <div class="industry-card"><span class="industry-icon">🛒</span><div class="industry-name">Retail & E-commerce</div><div class="industry-desc">Personalization, demand forecasting, CX AI</div></div>
+    <div class="industry-card"><span class="industry-icon">🚚</span><div class="industry-name">Logistics & Supply Chain</div><div class="industry-desc">Route optimization, inventory intelligence</div></div>
+    <div class="industry-card"><span class="industry-icon">⚡</span><div class="industry-name">Energy & Utilities</div><div class="industry-desc">Grid AI, consumption analytics, EHS</div></div>
+    <div class="industry-card"><span class="industry-icon">📚</span><div class="industry-name">Education & EdTech</div><div class="industry-desc">Adaptive learning, LMS AI, analytics</div></div>
+    <div class="industry-card"><span class="industry-icon">🏛️</span><div class="industry-name">Government & Public Sector</div><div class="industry-desc">Smart city AI, citizen services, security</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials fade-up">
+  <div class="section-badge">Client Voices</div>
+  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ardhas delivered an AI-powered analytics platform that reduced our reporting time by 70%. Their team's depth of expertise and commitment to quality is genuinely world-class."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#c9a84c,#e8c97a)">JM</div>
+        <div><div class="testi-name">James Morrison</div><div class="testi-role">CTO, Global Logistics Corp</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"From EHS compliance to predictive maintenance AI — Ardhas transformed our entire operations stack. The ROI exceeded our projections by 40% in the first year alone."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#1a6fff,#60a5fa)">SN</div>
+        <div><div class="testi-name">Sarah Nguyen</div><div class="testi-role">VP Operations, PrimeMfg Industries</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The conversational AI platform Ardhas built for our customer support handles 85% of queries autonomously. Our CSAT score jumped 28 points. Exceptional work."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:linear-gradient(135deg,#0e9f6e,#34d399)">RP</div>
+        <div><div class="testi-name">Ravi Patel</div><div class="testi-role">CEO, FinServe Digital</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section fade-up" id="contact">
+  <div class="cta-glow"></div>
+  <div style="position:relative">
+    <div class="section-badge" style="margin:0 auto 1.5rem;display:table">Let's Build Together</div>
+    <h2 class="section-title">Ready to Lead with AI?</h2>
+    <p class="section-sub" style="margin:0 auto 2.5rem">Partner with Ardhas Technology to deploy AI solutions that create lasting competitive advantages. Let's design your future — together.</p>
+    <div class="cta-actions">
+      <a href="mailto:info@ardhas.com" class="btn-primary" style="font-size:1rem">Schedule a Consultation ↗</a>
+      <a href="tel:+917094422114" class="btn-ghost" style="font-size:1rem">+91-70944 22114</a>
+    </div>
+    <p style="margin-top:2rem;font-size:0.8rem;color:rgba(250,250,248,0.3)">📍 KGiSL SEZ IT Park, Saravanampatti, Coimbatore, Tamil Nadu 641035</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><span>Ardhas</span> Technology</div>
+      <p>Global leader in AI-powered IT solutions. Transforming enterprises across 60+ countries through intelligent technology and engineering excellence.</p>
+      <p style="margin-top:1rem"><a href="mailto:info@ardhas.com" style="color:var(--gold);text-decoration:none">info@ardhas.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>AI Services</h4>
+      <ul>
+        <li><a href="#">Generative AI</a></li>
+        <li><a href="#">AI Agents</a></li>
+        <li><a href="#">Computer Vision</a></li>
+        <li><a href="#">ML & Analytics</a></li>
+        <li><a href="#">Conversational AI</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">App Development</a></li>
+        <li><a href="#">Cloud Services</a></li>
+        <li><a href="#">Cybersecurity</a></li>
+        <li><a href="#">IoT Integration</a></li>
+        <li><a href="#">EHS Management</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Ardhas Technology India Private Limited. All rights reserved.</p>
+    <p class="footer-contact">Designed for excellence · <a href="https://www.ardhas.com">ardhas.com</a></p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
+},{threshold:0.1})
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
+
+window.addEventListener('load', () => {
+  const bars = document.querySelectorAll('.ai-bar-fill')
+  bars.forEach((b,i) => {
+    const w = b.style.width
+    b.style.width = '0'
+    setTimeout(() => { b.style.width = w }, 500 + i * 200)
+  })
+})
+</script>
+</body>
+</html>
