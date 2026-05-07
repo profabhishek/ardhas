@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ardhas Technology — Intelligence, Engineered.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0B0B1F;
+  --ink-2:#13132E;
+  --paper:#F5F3EE;
+  --paper-2:#EDEAE2;
+  --indigo:#3A2BD9;
+  --indigo-deep:#1E1685;
+  --indigo-soft:#A5A0F0;
+  --azure:#1B5BFF;
+  --lilac:#DCD7FF;
+  --rule:rgba(11,11,31,0.12);
+  --rule-light:rgba(11,11,31,0.06);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.55;
+  overflow-x:hidden;
+  font-feature-settings:"ss01","cv11","ss03";
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--indigo);color:var(--paper)}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--paper-2)}
+::-webkit-scrollbar-thumb{background:var(--ink);border-radius:0}
+
+.serif{font-family:'Fraunces',serif;font-optical-sizing:auto}
+.mono{font-family:'JetBrains Mono',monospace;font-feature-settings:"ss02"}
+
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink);opacity:0.55;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--ink);opacity:0.4}
+.eyebrow.light{color:var(--paper);opacity:0.7}
+.eyebrow.light::before{background:var(--paper)}
+
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:200;
+  opacity:0.06;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  padding:18px 36px;gap:48px;
+  background:rgba(245,243,238,0.82);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid var(--rule-light);
+  transition:padding .3s ease;
+}
+nav.shrunk{padding:12px 36px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--ink);position:relative;overflow:hidden;
+}
+.brand-mark::before{
+  content:"";position:absolute;inset:5px;border-radius:50%;
+  border:1.5px solid var(--paper);
+  border-right-color:transparent;border-bottom-color:transparent;
+  animation:spin 12s linear infinite;
+}
+.brand-mark::after{
+  content:"";position:absolute;width:5px;height:5px;border-radius:50%;
+  background:var(--indigo-soft);top:50%;left:50%;transform:translate(-50%,-50%);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand-name{
+  font-family:'Fraunces',serif;font-weight:500;
+  font-size:20px;letter-spacing:-0.02em;
+  font-variation-settings:"opsz" 32;
+}
+.brand-name em{font-style:italic;font-weight:400;color:var(--indigo)}
+
+.nav-center{display:flex;justify-content:center;gap:36px}
+.nav-center a{
+  font-size:13px;font-weight:500;letter-spacing:-0.005em;
+  position:relative;padding:6px 0;
+  color:var(--ink);opacity:0.75;transition:opacity .2s;
+}
+.nav-center a:hover{opacity:1}
+.nav-center a::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:0;height:1px;background:var(--ink);transition:width .35s ease;
+}
+.nav-center a:hover::after{width:100%}
+
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-time{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.04em;opacity:0.55;
+}
+.nav-cta{
+  background:var(--ink);color:var(--paper);
+  padding:10px 18px;border-radius:999px;
+  font-size:12px;font-weight:500;letter-spacing:-0.005em;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all .25s ease;border:1px solid var(--ink);
+}
+.nav-cta:hover{background:var(--indigo);border-color:var(--indigo)}
+.nav-cta svg{transition:transform .25s ease}
+.nav-cta:hover svg{transform:translate(2px,-2px)}
+
+/* HERO */
+.hero{
+  min-height:100vh;position:relative;
+  padding:140px 36px 80px;overflow:hidden;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--rule-light) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule-light) 1px,transparent 1px);
+  background-size:88px 88px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 80%);
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 80%);
+}
+.hero-meta{
+  position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:0px;flex-wrap:wrap;gap:24px;
+}
+.hero-meta-left{display:flex;flex-direction:column;gap:8px;max-width:280px}
+.hero-meta-right{
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;opacity:0.55;letter-spacing:0.04em;
+}
+.hero-meta-right .live{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--indigo);opacity:1;
+}
+.hero-meta-right .live::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--indigo);animation:pulse 1.8s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero-meta-left p{font-size:13px;line-height:1.5;opacity:0.6}
+
+.hero-headline{
+  position:relative;z-index:2;
+  font-family:'Fraunces',serif;
+  font-weight:300;font-variation-settings:"opsz" 144;
+  font-size:clamp(56px,11vw,184px);
+  line-height:0.95;letter-spacing:-0.045em;
+  margin-bottom:48px;
+}
+.hero-headline .l1{display:block}
+.hero-headline .l2{display:block;text-indent:18%}
+.hero-headline .l3{display:block;text-align:right}
+.hero-headline em{
+  font-style:italic;font-weight:400;
+  background:linear-gradient(105deg,var(--indigo) 0%,var(--azure) 50%,var(--indigo-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-subline{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1.4fr;
+  gap:64px;align-items:end;
+  padding-top:32px;border-top:1px solid var(--rule);
+  margin-bottom:60px;
+}
+.hero-subline-left{
+  font-family:'Fraunces',serif;
+  font-size:18px;font-weight:300;font-style:italic;
+  line-height:1.4;color:var(--ink);opacity:0.6;
+  font-variation-settings:"opsz" 18;
+}
+.hero-subline-right{font-size:16px;line-height:1.6;max-width:540px}
+.hero-subline-right strong{font-weight:600}
+
+.hero-cta-row{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.btn-arrow{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--ink);color:var(--paper);
+  padding:18px 28px;border-radius:999px;
+  font-size:14px;font-weight:500;letter-spacing:-0.01em;
+  transition:all .35s cubic-bezier(.2,.8,.2,1);
+  position:relative;overflow:hidden;
+  border:1px solid var(--ink);
+}
+.btn-arrow::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,var(--indigo),var(--indigo-deep));
+  transform:translateY(101%);transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.btn-arrow:hover::before{transform:translateY(0)}
+.btn-arrow span{position:relative;z-index:1}
+.btn-arrow .arrow{
+  position:relative;z-index:1;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--paper);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .35s ease;
+}
+.btn-arrow:hover .arrow{transform:rotate(-45deg)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:500;
+  padding:14px 0;border-bottom:1px solid var(--ink);
+  transition:gap .25s ease;
+}
+.btn-ghost:hover{gap:14px}
+
+.hero-ticker{
+  position:relative;z-index:2;margin-top:120px;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:18px 0;overflow:hidden;
+  display:flex;align-items:center;
+}
+.ticker-track{
+  display:flex;gap:60px;
+  animation:ticker 50s linear infinite;
+  white-space:nowrap;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:24px;letter-spacing:-0.01em;
+  display:flex;align-items:center;gap:60px;color:var(--ink);
+  opacity:0.7;
+}
+.ticker-item::after{
+  content:"✦";color:var(--indigo);font-style:normal;font-size:12px;
+}
+
+/* STATS */
+.stats-band{
+  background:var(--ink);color:var(--paper);
+  padding:80px 36px;position:relative;overflow:hidden;
+}
+.stats-band-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid rgba(245,243,238,0.15);
+}
+.stat-cell{
+  padding:48px 32px;
+  border-right:1px solid rgba(245,243,238,0.15);
+  position:relative;transition:background .4s ease;
+}
+.stat-cell:last-child{border-right:none}
+.stat-cell:hover{background:rgba(245,243,238,0.04)}
+.stat-cell .num{
+  font-family:'Fraunces',serif;
+  font-weight:300;font-variation-settings:"opsz" 96;
+  font-size:88px;line-height:0.9;letter-spacing:-0.04em;
+  margin-bottom:18px;display:flex;align-items:flex-start;gap:6px;
+}
+.stat-cell .num em{
+  font-style:italic;font-weight:400;
+  background:linear-gradient(105deg,var(--indigo-soft),var(--lilac));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.stat-cell .num sup{
+  font-size:18px;font-weight:400;
+  font-family:'JetBrains Mono',monospace;
+  margin-top:14px;opacity:0.5;
+}
+.stat-cell .lab{font-size:13px;line-height:1.5;opacity:0.6;max-width:200px}
+.stat-cell-marker{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.1em;
+  opacity:0.4;margin-bottom:12px;
+}
+
+/* MANIFESTO */
+.manifesto{padding:50px 36px;background:var(--paper);position:relative}
+.manifesto-inner{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:280px 1fr;gap:80px;
+  align-items:flex-start;
+}
+.manifesto-side{
+  position:sticky;top:120px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.manifesto-side-num{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-weight:300;font-size:120px;line-height:0.9;
+  color:var(--indigo);opacity:0.95;
+  font-variation-settings:"opsz" 144;
+}
+.manifesto-side p{font-size:13px;opacity:0.6;line-height:1.6;max-width:240px}
+.manifesto-headline{
+  font-family:'Fraunces',serif;
+  font-weight:300;font-variation-settings:"opsz" 96;
+  font-size:clamp(40px,5.5vw,80px);
+  line-height:1.02;letter-spacing:-0.035em;
+  margin-bottom:60px;
+}
+.manifesto-headline em{font-style:italic;color:var(--indigo)}
+.manifesto-headline .underline{position:relative;display:inline-block}
+.manifesto-headline .underline::after{
+  content:"";position:absolute;left:0;right:0;bottom:0.05em;
+  height:0.08em;background:var(--lilac);z-index:-1;
+}
+.manifesto-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px 80px;padding-top:40px;
+  border-top:1px solid var(--rule);
+}
+.manifesto-item-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.12em;
+  color:var(--indigo);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.manifesto-item-num::after{content:"";flex:1;height:1px;background:var(--rule)}
+.manifesto-item h4{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:24px;letter-spacing:-0.02em;margin-bottom:14px;
+}
+.manifesto-item p{font-size:14px;line-height:1.7;opacity:0.7}
+
+/* CAPABILITIES */
+.capabilities{padding:50px 36px 120px;background:var(--paper);position:relative}
+.cap-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:flex-end;
+  margin-bottom:80px;padding-bottom:32px;
+  border-bottom:1px solid var(--rule);
+}
+.cap-header h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(48px,6vw,96px);
+  line-height:0.98;letter-spacing:-0.04em;
+}
+.cap-header h2 em{font-style:italic;color:var(--indigo)}
+.cap-header-meta{display:flex;flex-direction:column;gap:16px;padding-bottom:8px}
+.cap-header-meta p{font-size:15px;line-height:1.65;max-width:420px;opacity:0.7}
+
+.cap-list{display:flex;flex-direction:column}
+.cap-row{
+  display:grid;
+  grid-template-columns:80px 1fr 280px 1fr 80px;
+  gap:32px;align-items:center;
+  padding:36px 0;
+  border-bottom:1px solid var(--rule);
+  transition:padding .4s ease;cursor:pointer;
+  position:relative;
+}
+.cap-row:first-child{border-top:1px solid var(--rule)}
+.cap-row::before{
+  content:"";position:absolute;left:-36px;right:-36px;top:0;bottom:0;
+  background:var(--ink);transform:scaleY(0);transform-origin:bottom;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:0;
+}
+.cap-row:hover::before{transform:scaleY(1);transform-origin:top}
+.cap-row:hover{color:var(--paper)}
+.cap-row:hover .cap-num{color:var(--lilac)}
+.cap-row:hover .cap-meta{color:var(--lilac);opacity:0.8}
+.cap-row:hover .cap-arrow{background:var(--indigo);color:var(--paper);transform:rotate(-45deg)}
+.cap-row > *{position:relative;z-index:1}
+.cap-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:0.08em;
+  color:var(--indigo);transition:color .3s ease;
+}
+.cap-title{
+  font-family:'Fraunces',serif;
+  font-weight:400;font-size:32px;
+  letter-spacing:-0.02em;line-height:1.1;
+}
+.cap-title em{font-style:italic;color:var(--indigo);transition:color .3s ease}
+.cap-row:hover .cap-title em{color:var(--lilac)}
+.cap-tags{display:flex;flex-wrap:wrap;gap:6px}
+.cap-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.06em;
+  padding:4px 8px;border:1px solid currentColor;
+  border-radius:999px;opacity:0.6;
+}
+.cap-meta{font-size:13px;line-height:1.55;opacity:0.65;transition:opacity .3s ease}
+.cap-arrow{
+  width:48px;height:48px;border-radius:50%;
+  border:1px solid currentColor;
+  display:flex;align-items:center;justify-content:center;
+  margin-left:auto;
+  transition:all .35s cubic-bezier(.2,.8,.2,1);
+}
+
+/* EDITORIAL */
+.editorial{
+  padding:120px 36px;background:var(--ink);color:var(--paper);
+  position:relative;overflow:hidden;
+}
+.editorial::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(58,43,217,0.4),transparent 60%);
+  pointer-events:none;
+}
+.editorial-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:24px;max-width:1500px;margin:0 auto;
+}
+.ed-header{
+  grid-column:1/-1;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-bottom:48px;margin-bottom:48px;
+  border-bottom:1px solid rgba(245,243,238,0.15);
+  flex-wrap:wrap;gap:24px;
+}
+.ed-header h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(40px,5vw,72px);
+  line-height:1;letter-spacing:-0.035em;max-width:700px;
+}
+.ed-header h2 em{
+  font-style:italic;
+  background:linear-gradient(105deg,var(--indigo-soft),var(--lilac));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.ed-card{
+  position:relative;border-radius:0;overflow:hidden;
+  border:1px solid rgba(245,243,238,0.1);
+  background:rgba(245,243,238,0.02);
+  transition:all .4s ease;cursor:pointer;
+}
+.ed-card:hover{transform:translateY(-4px);border-color:rgba(220,215,255,0.3)}
+.ed-card-img{
+  width:100%;height:100%;
+  background-size:cover;background-position:center;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.ed-card:hover .ed-card-img{transform:scale(1.04)}
+.ed-card-body{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 30%,rgba(11,11,31,0.85) 100%);
+  padding:32px;display:flex;flex-direction:column;justify-content:flex-end;
+}
+.ed-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.1em;
+  color:var(--indigo-soft);margin-bottom:12px;
+}
+.ed-card h3{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:24px;line-height:1.15;letter-spacing:-0.02em;
+  margin-bottom:8px;max-width:90%;
+}
+.ed-card h3 em{font-style:italic;color:var(--lilac)}
+.ed-card p{font-size:13px;line-height:1.55;opacity:0.7;max-width:380px}
+
+.ed-feature{grid-column:1/8;height:560px}
+.ed-side-1{grid-column:8/-1;height:270px}
+.ed-side-2{grid-column:8/-1;height:266px}
+.ed-bot-1{grid-column:1/5;height:380px}
+.ed-bot-2{grid-column:5/9;height:380px}
+.ed-bot-3{
+  grid-column:9/-1;height:380px;background:var(--indigo-deep);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:32px;border-color:rgba(220,215,255,0.2);
+}
+.ed-bot-3-quote{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:24px;line-height:1.25;letter-spacing:-0.015em;
+}
+.ed-bot-3-quote::before{
+  content:"❝";display:block;
+  font-size:48px;color:var(--indigo-soft);
+  font-style:normal;line-height:1;margin-bottom:8px;
+}
+.ed-bot-3-attrib{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.08em;opacity:0.6;
+}
+
+/* INDUSTRIES */
+.industries{padding:160px 36px;background:var(--paper)}
+.ind-header{
+  display:grid;grid-template-columns:1fr 2fr 1fr;
+  gap:60px;align-items:flex-end;
+  padding-bottom:48px;margin-bottom:60px;
+  border-bottom:1px solid var(--rule);
+}
+.ind-header h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(40px,5.5vw,84px);
+  line-height:1;letter-spacing:-0.04em;
+}
+.ind-header h2 em{font-style:italic;color:var(--indigo)}
+.ind-header-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.1em;
+  opacity:0.5;text-align:right;
+}
+.ind-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule);
+}
+.ind-cell{
+  padding:48px 32px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  position:relative;overflow:hidden;
+  transition:background .4s ease;
+  min-height:240px;display:flex;flex-direction:column;justify-content:space-between;
+  cursor:pointer;
+}
+.ind-cell::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--indigo) 0%,var(--indigo-deep) 100%);
+  transform:translateY(101%);transition:transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.ind-cell:hover::before{transform:translateY(0)}
+.ind-cell:hover{color:var(--paper)}
+.ind-cell:hover .ind-num{color:var(--lilac);opacity:0.7}
+.ind-cell > *{position:relative;z-index:1}
+.ind-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.1em;
+  color:var(--indigo);opacity:0.7;
+  transition:color .3s ease;
+}
+.ind-name{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:30px;line-height:1.05;letter-spacing:-0.025em;
+}
+.ind-name em{font-style:italic;color:var(--indigo);transition:color .3s ease}
+.ind-cell:hover .ind-name em{color:var(--lilac)}
+.ind-desc{
+  font-size:12px;line-height:1.55;opacity:0.6;
+  transition:opacity .3s ease;margin-top:12px;
+}
+.ind-cell:hover .ind-desc{opacity:0.85}
+
+/* PROCESS */
+.process{padding:50px 36px;background:var(--paper);position:relative}
+.process-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-bottom:48px;margin-bottom:80px;
+  border-bottom:1px solid var(--rule);flex-wrap:wrap;gap:24px;
+}
+.process-header h2{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(40px,5.5vw,84px);
+  line-height:1;letter-spacing:-0.04em;max-width:700px;
+}
+.process-header h2 em{font-style:italic;color:var(--indigo)}
+.process-header-meta{
+  font-size:13px;line-height:1.6;opacity:0.65;
+  max-width:300px;text-align:right;
+}
+.process-rail{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;position:relative;
+}
+.process-rail::before{
+  content:"";position:absolute;top:32px;left:32px;right:32px;
+  height:1px;
+  background:repeating-linear-gradient(90deg,var(--ink),var(--ink) 4px,transparent 4px,transparent 8px);
+  opacity:0.3;
+}
+.proc-step{position:relative;display:flex;flex-direction:column;gap:20px}
+.proc-marker{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--paper);border:1px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+  font-family:'Fraunces',serif;font-style:italic;
+  font-weight:300;font-size:28px;color:var(--ink);
+  transition:all .35s ease;
+}
+.proc-step:hover .proc-marker{
+  background:var(--ink);color:var(--paper);transform:rotate(-8deg) scale(1.05);
+}
+.proc-step h4{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:24px;line-height:1.15;letter-spacing:-0.02em;
+}
+.proc-step h4 em{font-style:italic;color:var(--indigo)}
+.proc-step p{font-size:13px;line-height:1.65;opacity:0.7}
+.proc-step .proc-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;
+  opacity:0.5;text-transform:uppercase;
+  padding-top:12px;border-top:1px dashed var(--rule);margin-top:8px;
+}
+
+/* TESTIMONIAL */
+.testimonial{
+  padding:160px 36px;background:var(--ink);color:var(--paper);
+  position:relative;overflow:hidden;
+}
+.testimonial::before{
+  content:"❝";position:absolute;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+  font-size:680px;line-height:0.6;
+  top:60px;left:-40px;
+  color:var(--indigo);opacity:0.18;
+  pointer-events:none;
+}
+.testi-inner{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center;
+  position:relative;z-index:1;
+}
+.testi-photo{
+  aspect-ratio:4/5;
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+  filter:grayscale(0.2) contrast(1.05);
+}
+.testi-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(11,11,31,0.6) 100%);
+}
+.testi-photo-tag{
+  position:absolute;bottom:24px;left:24px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:0.1em;opacity:0.85;z-index:2;
+}
+.testi-body{display:flex;flex-direction:column;gap:36px}
+.testi-quote{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-variation-settings:"opsz" 96;
+  font-size:clamp(28px,3.4vw,52px);
+  line-height:1.1;letter-spacing:-0.025em;
+}
+.testi-quote em{
+  font-style:italic;
+  background:linear-gradient(105deg,var(--indigo-soft),var(--lilac));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.testi-attrib{
+  display:flex;flex-direction:column;gap:6px;
+  padding-top:24px;border-top:1px solid rgba(245,243,238,0.18);
+}
+.testi-name{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-weight:400;font-size:22px;
+}
+.testi-role{font-size:13px;opacity:0.55;letter-spacing:0.01em}
+.testi-pager{
+  display:flex;gap:16px;margin-top:24px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+}
+.testi-pager .current{color:var(--indigo-soft)}
+.testi-pager .total{opacity:0.5}
+
+/* FINAL CTA */
+.final-cta{padding:160px 36px 80px;background:var(--paper);position:relative;overflow:hidden}
+.cta-megatype{
+  font-family:'Fraunces',serif;font-weight:300;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(72px,15vw,260px);
+  line-height:0.85;letter-spacing:-0.05em;
+  color:var(--ink);text-align:center;
+  pointer-events:none;margin-bottom:48px;
+}
+.cta-megatype em{font-style:italic;color:var(--indigo)}
+.cta-megatype .stroke{
+  -webkit-text-stroke:1.5px var(--ink);
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.cta-action{
+  display:flex;justify-content:center;align-items:center;gap:24px;
+  flex-wrap:wrap;margin-bottom:80px;
+}
+.cta-detail-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;padding-top:48px;border-top:1px solid var(--rule);
+  max-width:1400px;margin:0 auto;
+}
+.cta-detail{display:flex;flex-direction:column;gap:8px}
+.cta-detail-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;opacity:0.5;
+}
+.cta-detail-value{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:18px;letter-spacing:-0.01em;line-height:1.4;
+}
+.cta-detail-value em{font-style:italic;color:var(--indigo)}
+
+/* FOOTER */
+footer{background:var(--ink);color:var(--paper);padding:80px 36px 32px;position:relative}
+.foot-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+  gap:48px;padding-bottom:60px;
+  border-bottom:1px solid rgba(245,243,238,0.12);
+}
+.foot-brand .brand{margin-bottom:24px}
+.foot-brand .brand-name{color:var(--paper)}
+.foot-brand .brand-name em{color:var(--indigo-soft)}
+.foot-brand p{
+  font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+  font-size:20px;line-height:1.4;
+  max-width:380px;opacity:0.7;
+  font-variation-settings:"opsz" 24;
+}
+.foot-col h5{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;opacity:0.5;
+  margin-bottom:18px;
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-col ul li a{
+  font-size:14px;opacity:0.8;
+  transition:opacity .2s,padding-left .25s ease;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.foot-col ul li a:hover{opacity:1;padding-left:6px;color:var(--indigo-soft)}
+.foot-bottom{
+  padding-top:32px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:0.04em;opacity:0.5;flex-wrap:wrap;gap:16px;
+}
+.foot-bottom .links{display:flex;gap:24px}
+.foot-megaword{
+  font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+  font-variation-settings:"opsz" 144;
+  font-size:clamp(80px,18vw,300px);
+  line-height:0.8;letter-spacing:-0.05em;
+  color:rgba(245,243,238,0.04);
+  text-align:center;margin-top:60px;
+  pointer-events:none;user-select:none;
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}
+.reveal.d2{transition-delay:.2s}
+.reveal.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .nav-center{display:none}
+  .hero-headline .l2{text-indent:0}
+  .hero-headline .l3{text-align:left}
+  .hero-subline{grid-template-columns:1fr;gap:24px}
+  .stats-band-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(1),.stat-cell:nth-child(2){border-bottom:1px solid rgba(245,243,238,0.15)}
+  .manifesto-inner{grid-template-columns:1fr}
+  .manifesto-side{position:static}
+  .manifesto-grid{grid-template-columns:1fr}
+  .cap-header{grid-template-columns:1fr}
+  .cap-row{grid-template-columns:60px 1fr 60px;gap:18px}
+  .cap-row .cap-tags,.cap-row .cap-meta{display:none}
+  .editorial-grid{grid-template-columns:1fr}
+  .ed-feature,.ed-side-1,.ed-side-2,.ed-bot-1,.ed-bot-2,.ed-bot-3{
+    grid-column:1/-1;height:auto;min-height:280px;
+  }
+  .ind-header{grid-template-columns:1fr}
+  .ind-header-meta{text-align:left}
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .process-rail{grid-template-columns:1fr 1fr}
+  .process-rail::before{display:none}
+  .testi-inner{grid-template-columns:1fr}
+  .testi-photo{max-width:340px}
+  .cta-detail-row{grid-template-columns:1fr 1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  nav{padding:14px 20px;grid-template-columns:auto auto}
+  .nav-right .nav-time{display:none}
+  .hero{padding:110px 20px 60px}
+  .hero-headline{font-size:54px}
+  .ticker-item{font-size:18px;gap:40px}
+  .stats-band,.manifesto,.capabilities,.editorial,.industries,.process,.testimonial,.final-cta{padding:80px 20px}
+  .stats-band-grid{grid-template-columns:1fr}
+  .stat-cell{border-right:none;border-bottom:1px solid rgba(245,243,238,0.15)}
+  .stat-cell .num{font-size:64px}
+  .ind-grid{grid-template-columns:1fr}
+  .process-rail{grid-template-columns:1fr}
+  .cap-row{grid-template-columns:1fr;text-align:left}
+  .cap-arrow{margin:0}
+  .cap-title{font-size:24px}
+  .testi-quote{font-size:24px}
+  .cta-detail-row{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr;gap:32px}
+  .foot-bottom{flex-direction:column;align-items:flex-start}
+  footer{padding:60px 20px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="brand">
+    <span class="brand-mark"></span>
+    <span class="brand-name">Ardhas<em></em> Technology</span>
+  </a>
+  <div class="nav-center">
+    <a href="#capabilities">Intelligence</a>
+    <a href="#industries">Practice</a>
+    <a href="#process">Method</a>
+    <a href="#editorial">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-time mono" id="navTime">— · —</span>
+    <a href="#contact" class="nav-cta">
+      <span>Begin</span>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+        <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+
+  <div class="hero-meta">
+    <div class="hero-meta-left">
+      <span class="eyebrow">Est. 2012 · Coimbatore</span>
+      <p>Building AI-powered solutions for modern businesses worldwide.</p>
+    </div>
+    <div class="hero-meta-right">
+      <span class="live">Now serving 60+ markets</span>
+      <span>Issue №&nbsp;<span class="serif" style="font-style:italic">XII</span> — 2026</span>
+      <span>11.01° N · 76.95° E</span>
+    </div>
+  </div>
+
+  <h1 class="hero-headline">
+    <span class="l1">Intelligence,</span>
+    <span class="l2"><em>engineered</em></span>
+    <span class="l3">for what's next.</span>
+  </h1>
+
+  <div class="hero-subline">
+    <p class="hero-subline-left">A decade of engineering. A new language for software.</p>
+    <p class="hero-subline-right">Ardhas Technology pairs frontier AI with disciplined enterprise craft — building the systems that quietly run the world's most ambitious companies. <strong>No theatrics. Just outcomes.</strong></p>
+  </div>
+
+  <div class="hero-cta-row">
+    <a href="#capabilities" class="btn-arrow">
+      <span>Explore the practice</span>
+      <span class="arrow">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+          <path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </a>
+    <a href="#contact" class="btn-ghost">Schedule an introduction
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+
+  <div class="hero-ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">Generative AI</span>
+      <span class="ticker-item">Autonomous Agents</span>
+      <span class="ticker-item">Computer Vision</span>
+      <span class="ticker-item">Predictive Systems</span>
+      <span class="ticker-item">RAG Architectures</span>
+      <span class="ticker-item">Cloud Infrastructure</span>
+      <span class="ticker-item">MLOps</span>
+      <span class="ticker-item">Edge Intelligence</span>
+      <span class="ticker-item">Generative AI</span>
+      <span class="ticker-item">Autonomous Agents</span>
+      <span class="ticker-item">Computer Vision</span>
+      <span class="ticker-item">Predictive Systems</span>
+      <span class="ticker-item">RAG Architectures</span>
+      <span class="ticker-item">Cloud Infrastructure</span>
+      <span class="ticker-item">MLOps</span>
+      <span class="ticker-item">Edge Intelligence</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-band">
+  <div class="stats-band-grid">
+    <div class="stat-cell reveal">
+      <div class="stat-cell-marker mono">/ 01</div>
+      <div class="num"><em>60</em><sup>+</sup></div>
+      <div class="lab">Countries served — from Singapore boardrooms to São Paulo factories.</div>
+    </div>
+    <div class="stat-cell reveal d1">
+      <div class="stat-cell-marker mono">/ 02</div>
+      <div class="num">100<sup>+</sup></div>
+      <div class="lab">Engagements delivered — measured in outcomes, not hours.</div>
+    </div>
+    <div class="stat-cell reveal d2">
+      <div class="stat-cell-marker mono">/ 03</div>
+      <div class="num"><em>10</em><sup>yrs</sup></div>
+      <div class="lab">Of operating discipline. Founded the year LLMs were a research footnote.</div>
+    </div>
+    <div class="stat-cell reveal d3">
+      <div class="stat-cell-marker mono">/ 04</div>
+      <div class="num">99<sup>%</sup></div>
+      <div class="lab">Client retention. The kind of number you only earn slowly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="about">
+  <div class="manifesto-inner">
+    <aside class="manifesto-side reveal">
+      <div class="manifesto-side-num serif">№ 01</div>
+      <span class="eyebrow">Position</span>
+      <p>A note from our principals on what we believe — and why it matters now more than ever.</p>
+    </aside>
+    <div class="manifesto-body">
+      <h2 class="manifesto-headline reveal">
+        We don't sell <em>AI</em>. <br>
+        We engineer the <span class="underline">quiet, durable systems</span> that let intelligent enterprises <em>compound</em>.
+      </h2>
+      <div class="manifesto-grid">
+        <div class="manifesto-item reveal">
+          <div class="manifesto-item-num mono">/ Principle 01</div>
+          <h4>Outcomes over output.</h4>
+          <p>A model in production is worth a thousand pitch decks. We measure success by what changes for the business — revenue captured, hours returned, decisions sharpened.</p>
+        </div>
+        <div class="manifesto-item reveal d1">
+          <div class="manifesto-item-num mono">/ Principle 02</div>
+          <h4>Engineering as taste.</h4>
+          <p>Software is a creative discipline. We treat architecture, code, and interface as one continuous expression of judgment — and we hire for it.</p>
+        </div>
+        <div class="manifesto-item reveal d2">
+          <div class="manifesto-item-num mono">/ Principle 03</div>
+          <h4>Long horizons. Tight feedback.</h4>
+          <p>We commit to multi-year transformations and ship every fortnight. Our teams compound learning where others compound technical debt.</p>
+        </div>
+        <div class="manifesto-item reveal d3">
+          <div class="manifesto-item-num mono">/ Principle 04</div>
+          <h4>Independent. Considered.</h4>
+          <p>No outside investors. No quarterly theatrics. We pick our work, our partners, and our pace — which is how we keep the bar where it should be.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="capabilities" id="capabilities">
+  <header class="cap-header">
+    <h2 class="reveal">The intelligence <em>practice.</em></h2>
+    <div class="cap-header-meta reveal d1">
+      <span class="eyebrow">Capabilities — A&nbsp;Selected Index</span>
+      <p>Eight disciplines, one continuous Effort. Every engagement is staffed by partners who've shipped this work in production, not consultants who've read about it.</p>
+    </div>
+  </header>
+
+  <div class="cap-list">
+    <a class="cap-row reveal">
+      <span class="cap-num mono">/ 001</span>
+      <span class="cap-title">Generative AI &amp; <em>Custom LLMs</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">RAG</span><span class="cap-tag">FINE-TUNE</span><span class="cap-tag">COPILOTS</span>
+      </span>
+      <span class="cap-meta">Domain-tuned language models, retrieval architectures, and enterprise copilots that compound knowledge work.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal d1">
+      <span class="cap-num mono">/ 002</span>
+      <span class="cap-title">Autonomous <em>Agents</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">PLANNING</span><span class="cap-tag">TOOLS</span><span class="cap-tag">EVAL</span>
+      </span>
+      <span class="cap-meta">Agentic systems that perceive, reason, and act — orchestrating workflows that previously required human routing.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal d2">
+      <span class="cap-num mono">/ 003</span>
+      <span class="cap-title">Predictive <em>ML &amp; Analytics</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">FORECASTING</span><span class="cap-tag">ANOMALY</span><span class="cap-tag">CAUSAL</span>
+      </span>
+      <span class="cap-meta">Forecasting, anomaly detection, and causal models that turn historical signal into forward-looking advantage.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal">
+      <span class="cap-num mono">/ 004</span>
+      <span class="cap-title">Computer <em>Vision</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">VLM</span><span class="cap-tag">EDGE</span><span class="cap-tag">REAL-TIME</span>
+      </span>
+      <span class="cap-meta">Real-time perception systems for inspection, safety, and embodied intelligence — from cloud to edge.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal d1">
+      <span class="cap-num mono">/ 005</span>
+      <span class="cap-title">Application <em>Engineering</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">PLATFORM</span><span class="cap-tag">FULLSTACK</span>
+      </span>
+      <span class="cap-meta">Production-grade platforms — built for scale, designed for the people who actually use them every day.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal d2">
+      <span class="cap-num mono">/ 006</span>
+      <span class="cap-title">Cloud &amp; <em>MLOps</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">AWS</span><span class="cap-tag">AZURE</span><span class="cap-tag">GCP</span>
+      </span>
+      <span class="cap-meta">Migration, multi-cloud architecture, and the operational backbone that keeps intelligent systems honest in production.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal">
+      <span class="cap-num mono">/ 007</span>
+      <span class="cap-title">AI-Native <em>Cybersecurity</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">DETECT</span><span class="cap-tag">RESPOND</span>
+      </span>
+      <span class="cap-meta">Behavioral models that catch threats before they become incidents — and respond before humans wake up.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="cap-row reveal d1">
+      <span class="cap-num mono">/ 008</span>
+      <span class="cap-title">Design &amp; <em>Interface</em></span>
+      <span class="cap-tags">
+        <span class="cap-tag">UX</span><span class="cap-tag">SYSTEMS</span>
+      </span>
+      <span class="cap-meta">Interfaces that make intelligence legible. We treat design as the medium through which AI earns user trust.</span>
+      <span class="cap-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- EDITORIAL -->
+<section class="editorial" id="editorial">
+  <div class="editorial-grid">
+    <div class="ed-header reveal">
+      <h2>Selected work — <em>quietly running</em> in production.</h2>
+    </div>
+
+    <div class="ed-card ed-feature reveal">
+      <div class="ed-card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1400&q=80');background-color:#1a1840"></div>
+      <div class="ed-card-body">
+        <div class="ed-tag mono">/ FEATURED · LLM PLATFORM</div>
+        <h3>An <em>enterprise copilot</em> reading 14 years of regulatory archive — in 800 milliseconds.</h3>
+        <p>Built for a Fortune 200 financial institution. RAG over 2.4M proprietary documents, with provenance tracking and human-in-the-loop review baked in.</p>
+      </div>
+    </div>
+
+    <div class="ed-card ed-side-1 reveal d1">
+      <div class="ed-card-img" style="background-image:url('https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=900&q=80');background-color:#1a1840"></div>
+      <div class="ed-card-body">
+        <div class="ed-tag mono">/ COMPUTER VISION</div>
+        <h3>Real-time defect detection at <em>line speed</em>.</h3>
+      </div>
+    </div>
+
+    <div class="ed-card ed-side-2 reveal d2">
+      <div class="ed-card-img" style="background-image:url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=900&q=80');background-color:#1a1840"></div>
+      <div class="ed-card-body">
+        <div class="ed-tag mono">/ AGENTS</div>
+        <h3>An autonomous agent <em>handling 84%</em> of inbound support — without escalation.</h3>
+      </div>
+    </div>
+
+    <div class="ed-card ed-bot-1 reveal">
+      <div class="ed-card-img" style="background-image:url('https://images.unsplash.com/photo-1516110833967-0b5716ca1387?auto=format&fit=crop&w=900&q=80');background-color:#1a1840"></div>
+      <div class="ed-card-body">
+        <div class="ed-tag mono">/ PREDICTIVE</div>
+        <h3>Demand forecasts with <em>3.2× lift</em> over incumbent models.</h3>
+      </div>
+    </div>
+
+    <div class="ed-card ed-bot-2 reveal d1">
+      <div class="ed-card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80');background-color:#1a1840"></div>
+      <div class="ed-card-body">
+        <div class="ed-tag mono">/ EDGE AI</div>
+        <h3>On-device inference for a <em>300,000-unit</em> IoT fleet.</h3>
+      </div>
+    </div>
+
+    <div class="ed-card ed-bot-3 reveal d2">
+      <div class="ed-bot-3-quote serif">
+        Ardhas didn't deliver software. They delivered a new operating tempo.
+      </div>
+      <div>
+        <div class="ed-bot-3-attrib mono">— GLOBAL HEAD OF DATA<br>FORTUNE 100 INSURER</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <header class="ind-header">
+    <h2 class="reveal">Where we <em>practice.</em></h2>
+    <div class="reveal d1"></div>
+    <div class="ind-header-meta reveal d2">
+      <span class="eyebrow">Index — 08 verticals</span>
+    </div>
+  </header>
+
+  <div class="ind-grid">
+    <div class="ind-cell reveal">
+      <span class="ind-num mono">/ 001</span>
+      <h3 class="ind-name">Financial <em>Services</em></h3>
+      <p class="ind-desc">Risk models, fraud surveillance, regulatory automation.</p>
+    </div>
+    <div class="ind-cell reveal d1">
+      <span class="ind-num mono">/ 002</span>
+      <h3 class="ind-name">Healthcare &amp; <em>Life&nbsp;Sciences</em></h3>
+      <p class="ind-desc">Diagnostic AI, clinical workflow, compliance.</p>
+    </div>
+    <div class="ind-cell reveal d2">
+      <span class="ind-num mono">/ 003</span>
+      <h3 class="ind-name">Industrial <em>Manufacturing</em></h3>
+      <p class="ind-desc">Predictive maintenance, vision QA, IoT.</p>
+    </div>
+    <div class="ind-cell reveal d3">
+      <span class="ind-num mono">/ 004</span>
+      <h3 class="ind-name">Retail &amp; <em>Commerce</em></h3>
+      <p class="ind-desc">Personalization, demand intelligence, CX agents.</p>
+    </div>
+    <div class="ind-cell reveal">
+      <span class="ind-num mono">/ 005</span>
+      <h3 class="ind-name">Logistics &amp; <em>Supply&nbsp;Chain</em></h3>
+      <p class="ind-desc">Route optimization, inventory intelligence.</p>
+    </div>
+    <div class="ind-cell reveal d1">
+      <span class="ind-num mono">/ 006</span>
+      <h3 class="ind-name">Energy &amp; <em>Utilities</em></h3>
+      <p class="ind-desc">Grid AI, load forecasting, EHS systems.</p>
+    </div>
+    <div class="ind-cell reveal d2">
+      <span class="ind-num mono">/ 007</span>
+      <h3 class="ind-name">Education &amp; <em>EdTech</em></h3>
+      <p class="ind-desc">Adaptive learning, content intelligence.</p>
+    </div>
+    <div class="ind-cell reveal d3">
+      <span class="ind-num mono">/ 008</span>
+      <h3 class="ind-name">Public <em>Sector</em></h3>
+      <p class="ind-desc">Citizen services, civic intelligence, security.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <header class="process-header">
+    <h2 class="reveal">The <em>method.</em></h2>
+    <p class="process-header-meta reveal d1">A four-phase rhythm we've refined over a decade. Predictable enough to plan against. Flexible enough to learn from.</p>
+  </header>
+
+  <div class="process-rail">
+    <div class="proc-step reveal">
+      <div class="proc-marker">i</div>
+      <h4><em>Discover</em> the real problem.</h4>
+      <p>Workshops with the people who'll live with the system. We map the business before the technology.</p>
+      <div class="proc-meta mono">Phase 01 · 2–4 weeks</div>
+    </div>
+    <div class="proc-step reveal d1">
+      <div class="proc-marker">ii</div>
+      <h4><em>Architect</em> the system.</h4>
+      <p>Model selection, data design, integration plan, and the metrics that will tell us we've won.</p>
+      <div class="proc-meta mono">Phase 02 · 3–5 weeks</div>
+    </div>
+    <div class="proc-step reveal d2">
+      <div class="proc-marker">iii</div>
+      <h4><em>Build</em> in the open.</h4>
+      <p>Two-week sprints, working software, no surprises. You see what we ship, the day we ship it.</p>
+      <div class="proc-meta mono">Phase 03 · 8–24 weeks</div>
+    </div>
+    <div class="proc-step reveal d3">
+      <div class="proc-marker">iv</div>
+      <h4><em>Operate</em> &amp; compound.</h4>
+      <p>MLOps, monitoring, retraining. The system gets better in production — that's where our work continues.</p>
+      <div class="proc-meta mono">Phase 04 · Ongoing</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="testi-inner">
+    <div class="testi-photo reveal" style="background-image:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80')">
+      <div class="testi-photo-tag mono">— PORTRAIT, 2026</div>
+    </div>
+    <div class="testi-body reveal d1">
+      <span class="eyebrow light">In Conversation · Issue XII</span>
+      <blockquote class="testi-quote">
+        "We've worked with the global names. Ardhas was the first partner who didn't pitch us — they just <em>understood the business</em>, then quietly shipped the most consequential system we've deployed this decade."
+      </blockquote>
+      <div class="testi-attrib">
+        <span class="testi-name serif">Sarah&nbsp;Nguyen</span>
+        <span class="testi-role mono">VP&nbsp;OPERATIONS · PRIMEMFG INDUSTRIES</span>
+      </div>
+      <div class="testi-pager mono">
+        <span class="current">01</span>
+        <span class="total">/ 03</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <h2 class="cta-megatype reveal">
+    <span class="stroke">Build</span> <em>&amp;</em> <br>
+    something <em>worth</em> <br>
+    keeping.
+  </h2>
+  <div class="cta-action reveal d1">
+    <a href="mailto:hello@ardhas.com" class="btn-arrow">
+      <span>Begin a conversation</span>
+      <span class="arrow">
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+          <path d="M2 9L9 2M9 2H3.5M9 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </a>
+    <a href="tel:+917094422114" class="btn-ghost">+91 70944 22114
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+
+  <div class="cta-detail-row">
+    <div class="cta-detail reveal">
+      <span class="cta-detail-label">Office</span>
+      <span class="cta-detail-value">KGiSL SEZ IT Park,<br>Saravanampatti</span>
+    </div>
+    <div class="cta-detail reveal d1">
+      <span class="cta-detail-label">City</span>
+      <span class="cta-detail-value"><em>Coimbatore</em>,<br>Tamil&nbsp;Nadu&nbsp;641035</span>
+    </div>
+    <div class="cta-detail reveal d2">
+      <span class="cta-detail-label">Reach</span>
+      <span class="cta-detail-value">info@ardhas.com</span>
+    </div>
+    <div class="cta-detail reveal d3">
+      <span class="cta-detail-label">Hours</span>
+      <span class="cta-detail-value">Mon — Fri,<br>09:00 — 19:00 IST</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <a href="#" class="brand">
+        <span class="brand-mark"></span>
+        <span class="brand-name">Ardhas<em>.</em></span>
+      </a>
+      <p>An independent intelligence studio. Engineering the AI-native enterprise — with patience, taste, and a long memory.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="#">Generative AI</a></li>
+        <li><a href="#">Agents</a></li>
+        <li><a href="#">Predictive ML</a></li>
+        <li><a href="#">Computer Vision</a></li>
+        <li><a href="#">Engineering</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Sectors</h5>
+      <ul>
+        <li><a href="#">Financial Services</a></li>
+        <li><a href="#">Healthcare</a></li>
+        <li><a href="#">Manufacturing</a></li>
+        <li><a href="#">Retail</a></li>
+        <li><a href="#">Energy</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Method</a></li>
+        <li><a href="#">Selected Work</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:hello@ardhas.com">hello@ardhas.com</a></li>
+        <li><a href="#">LinkedIn ↗</a></li>
+        <li><a href="#">X / Twitter ↗</a></li>
+        <li><a href="#">GitHub ↗</a></li>
+        <li><a href="#">Substack ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© MMXXVI · Ardhas Technology India Pvt. Ltd. All rights reserved.</span>
+    <div class="links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Imprint</a>
+      <a href="#">RSS</a>
+    </div>
+  </div>
+  <div class="foot-megaword serif">Ardhas.</div>
+</footer>
+
+<script>
+function updateTime(){
+  const now=new Date();
+  const ist=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+  document.getElementById('navTime').textContent=ist+' IST';
+}
+updateTime();setInterval(updateTime,30000);
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>40)nav.classList.add('shrunk');else nav.classList.remove('shrunk');
+});
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  });
+},{threshold:0.08,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
