@@ -146,7 +146,7 @@
     .hero-robot {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -249,7 +249,10 @@ box-shadow:
   0 0 0 1px rgba(56,216,255,0.04),
   0 0 4px rgba(56,216,255,0.10),
   0 6px 18px rgba(0,0,0,0.38);
+
+  z-index: 2;
     }
+
 
     /* Glowing cyan border via pseudo */
     .stab::before {
@@ -370,7 +373,7 @@ filter:
        SECTIONS SHARED
     ══════════════════════════════ */
     section { position: relative; z-index: 1; }
-    .sec-wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px,4vw,0px); }
+    .sec-wrap { max-width: 1160px; margin: 0 auto; padding: 0 clamp(16px,4vw,0px); }
     .section-head { text-align: center; margin-bottom: 52px; }
     .section-head .label { display: inline-block; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
     .section-head h2 { font-family: var(--font-h); font-size: clamp(1.75rem,3vw,2.75rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
