@@ -210,7 +210,7 @@
     .service-col {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 9px;
       flex: 0 0 auto;
     }
 
@@ -231,7 +231,7 @@
     ══════════════════════════════ */
     .stab {
       position: relative;
-      width: 245px;
+      width: 201px;
       padding: 22px 20px 18px;
       display: flex;
       flex-direction: column;
@@ -329,13 +329,13 @@ filter:
 
 .stab h3{
   color:#f4fbff;
-
-  text-shadow:
-    0 0 10px rgba(56,216,255,.18);
+  font-size: 0.8rem;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .stab p{
-  font-size:.82rem;
+  font-size:0.75rem;
 
   color:rgba(220,240,255,.92);
 
@@ -728,124 +728,8 @@ filter:
 </div>
 
 <!-- ═══ HERO ═══ -->
-<section class="hero">
-  <!-- Background image layer -->
-  <div class="hero-bg-layer"></div>
-  <div class="hero-bg-overlay"></div>
-
-  <!-- Center robot image (behind everything) -->
-  <div class="hero-robot">
-    <img src="robot-talking.png" alt="AI Robots" aria-hidden="true"/>
-  </div>
-
-  <!-- Brain image at top center of robot -->
-  <div class="brain-wrap" style="position:absolute;top:calc(68% - 260px);left:48%;transform:translateX(-50%);z-index:4;width:140px;pointer-events:none;">
-    <img src="brain.png" alt="" style="width:200px;filter:drop-shadow(0 0 20px rgba(56,216,255,0.95)) drop-shadow(0 0 50px rgba(56,216,255,0.65)) drop-shadow(0 0 100px rgba(56,216,255,0.35));"/>
-  </div>
-
-  <!-- Headline -->
-  <div class="hero-head">
-    <div class="eyebrow">AI-Powered · Future-Ready · Trusted Since 2012</div>
-    <h1>Intelligent Solutions.<br><span>Limitless Possibilities.</span></h1>
-    <p class="sub">Connected Future &nbsp;·&nbsp; AI-Powered Innovation</p>
-  </div>
-
-  <!-- Three-col layout matching the reference image -->
-  <div class="three-col">
-
-    <!-- LEFT COLUMN -->
-    <div class="service-col left-col">
-      <div class="stab">
-        <div class="stab-top">
-          <div class="stab-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.66z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.66z"/></svg>
-          </div>
-          <h3>AI Solutions</h3>
-        </div>
-        <p>Smarter Automation</p>
-      </div>
-      <div class="stab">
-        <div class="stab-top">
-          <div class="stab-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
-          </div>
-          <h3>Cloud Services</h3>
-        </div>
-        <p>Scalable. Secure. Reliable.</p>
-      </div>
-      <div class="stab">
-        <div class="stab-top">
-          <div class="stab-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3>Cybersecurity</h3>
-        </div>
-        <p>Protect What Matters</p>
-      </div>
-    </div>
-
-    <!-- CENTER SPACER (robot image is absolutely positioned) -->
-    <div class="center-spacer"></div>
-
-    <!-- RIGHT COLUMN -->
-    <div class="service-col right-col">
-      <div class="stab">
-        <div class="stab-top">
-          <div class="stab-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-          </div>
-          <h3>Data Analytics</h3>
-        </div>
-        <p>Insights that Drive Growth</p>
-      </div>
-      <div class="stab">
-        <div class="stab-top">
-          <div class="stab-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <h3>Software Development</h3>
-        </div>
-        <p>Custom. Agile. Innovative.</p>
-      </div>
-      <div class="stab">
-        <div class="stab-top">
-          <div class="stab-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="var(--cyan3)"/></svg>
-          </div>
-          <h3>Digital Transformation</h3>
-        </div>
-        <p>Future Ready Solutions</p>
-      </div>
-    </div>
-
-  </div><!-- /.three-col -->
-
-  <div class="glow-rule"></div>
-</section>
-
-<!-- ICONS STRIP -->
 <section>
-  <div style="position: absolute; top: -160px; left: 38%;" class="center-col">
-    <div class="icons-strip">
-      <div class="icon-pill">
-        <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8a6 6 0 1 0-12 0c0 1.45.57 2.75 1.5 3.75C8.26 12.26 8.73 13.02 8.91 14"/></svg></div>
-        <span>Innovate</span>
-      </div>
-      <div class="icon-pill">
-        <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-        <span>Automate</span>
-      </div>
-      <div class="icon-pill">
-        <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
-        <span>Accelerate</span>
-      </div>
-      <div class="icon-pill">
-        <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <span>Evolve</span>
-      </div>
-    </div>
-    <p class="tagline">Your Trusted <strong>Technology Partner</strong></p>
-  </div>
+    <img style="width: 100%; height: auto;" src="ai2.png" alt="AI Technology">
 </section>
 
 <!-- ═══ STATS BAR ═══ -->
