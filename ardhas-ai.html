@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ardhas Technology — Intelligent Solutions. Limitless Possibilities.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #020810;
+      --bg2:      #040d1c;
+      --panel:    rgba(5,16,36,0.72);
+      --panel2:   rgba(4,12,26,0.88);
+      --line:     rgba(55,195,255,0.15);
+      --line2:    rgba(55,195,255,0.28);
+      --text:     #e6f4ff;
+      --muted:    rgba(200,230,255,0.58);
+      --cyan:     #38d8ff;
+      --cyan2:    #18b0ff;
+      --cyan3:    #6ef2ff;
+      --teal:     #0fd4b4;
+      --green:    #3de8a0;
+      --r:        18px;
+      --rL:       26px;
+      --font-h:   system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-b:   'DM Sans', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-b); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(56,216,255,0.3); border-radius: 3px; }
+
+    /* ── FIXED AMBIENT ── */
+    .amb {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% -5%, rgba(20,130,255,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 10% 90%, rgba(0,80,200,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 35% at 90% 55%, rgba(56,216,255,0.09) 0%, transparent 50%);
+    }
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(56,216,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,216,255,0.035) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 100% 100% at center, black 15%, transparent 75%);
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 clamp(20px,4vw,64px); height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(2,6,14,0.78);
+      border-bottom: 1px solid rgba(56,216,255,0.10);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: border-color 0.3s;
+    }
+
+    /* LOGO — globe + ARDHAS wordmark */
+    .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .logo-svg-globe { width: 44px; height: 44px; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(56,216,255,0.5)); }
+    .logo-wordmark { display: flex; flex-direction: column; line-height: 1; width: 85%;}
+    .logo-wordmark .brand-name {
+      font-family: var(--font-h); font-size: 1.55rem; font-weight: 800;
+      letter-spacing: 0.12em; color: var(--text); text-transform: uppercase;
+    }
+    .logo-wordmark .brand-name .brand-a { color: var(--cyan); }
+    .logo-wordmark .brand-sub {
+      font-family: var(--font-b); font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.38em; text-transform: uppercase;
+      color: rgba(200,230,255,0.5); margin-top: 1px;
+    }
+
+    nav { display: flex; align-items: center; gap: 2px; }
+    nav a {
+      text-decoration: none; color: rgba(200,230,255,0.7);
+      font-size: 0.875rem; padding: 8px 15px; border-radius: 999px;
+      transition: all 0.2s ease; letter-spacing: 0.02em;
+    }
+    nav a:hover { color: var(--text); background: rgba(56,216,255,0.09); }
+    .nav-cta {
+      margin-left: 6px; padding: 9px 22px !important;
+      background: linear-gradient(135deg,rgba(56,216,255,0.18),rgba(20,130,255,0.12)) !important;
+      border: 1px solid rgba(56,216,255,0.32) !important;
+      color: var(--cyan3) !important; font-weight: 500 !important;
+      box-shadow: 0 0 18px rgba(56,216,255,0.15);
+    }
+    .nav-cta:hover { background: linear-gradient(135deg,rgba(56,216,255,0.28),rgba(20,130,255,0.22)) !important; border-color: rgba(56,216,255,0.5) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--cyan); border-radius: 2px; }
+    .mob-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(2,6,14,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); padding: 20px 24px; flex-direction: column; gap: 4px; z-index: 99; }
+    .mob-nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; padding: 12px 0; border-bottom: 1px solid rgba(56,216,255,0.07); transition: color 0.2s; }
+    .mob-nav a:hover { color: var(--cyan); }
+    .mob-nav.open { display: flex; }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 90px clamp(16px,4vw,60px) 60px;
+    }
+
+    /* image layer behind everything */
+    .hero-img-bg {
+      position: absolute; inset: 0; z-index: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 18%;
+    }
+.hero-img-bg img {
+  width: min(100%, 700px);
+  opacity: 1;
+  filter:
+    saturate(1.2)
+    brightness(1.4);
+
+  pointer-events: none;
+  transform: scale(1.06);
+  border-radius: 42px;
+
+  /* EDGE FADE */
+  -webkit-mask-image:
+    radial-gradient(
+      circle,
+      rgba(0,0,0,1) 58%,
+      rgba(0,0,0,0.92) 68%,
+      rgba(0,0,0,0.45) 82%,
+      transparent 100%
+    );
+
+  mask-image:
+    radial-gradient(
+      circle,
+      rgba(0,0,0,1) 58%,
+      rgba(0,0,0,0.92) 68%,
+      rgba(0,0,0,0.45) 82%,
+      transparent 100%
+    );
+}
+
+    /* headline */
+    .hero-head { position: relative; z-index: 2; text-align: center; margin-bottom: 46px; animation: fadeUp 0.85s ease both; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 0.76rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(200,230,255,0.50); margin-bottom: 16px; }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 30px; height: 1px; background: linear-gradient(90deg, transparent, rgba(56,216,255,0.75), transparent); }
+    .hero-head h1 { font-family: var(--font-h); font-size: clamp(2.2rem,5vw,4.2rem); font-weight: 800; line-height: 1.06; letter-spacing: -0.03em; }
+    .hero-head h1 span { color: var(--cyan); text-shadow: 0 0 32px rgba(56,216,255,0.45); }
+    .hero-head .sub { margin-top: 10px; font-size: 0.9rem; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 300; }
+
+    /* 3-col grid */
+    .three-col {
+        display:flex;
+        align-items:end;
+        min-width: 1300px;
+        justify-content:space-between;
+    }
+    .service-col { display: flex; flex-direction: column; gap: 14px; }
+
+
+    .stab{
+  position:relative;
+
+  width:16vw;
+  min-width:220px;
+
+  padding:28px 20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(70,220,255,0.16),
+      rgba(70,220,255,0.04) 30%,
+      rgba(4,13,28,0.96) 75%
+    );
+
+  border:1px solid rgba(56,216,255,0.18);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+
+  /* MAIN DEPTH */
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.06),
+    inset 0 -30px 60px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(56,216,255,0.05),
+    0 10px 40px rgba(0,0,0,0.45),
+    0 0 50px rgba(56,216,255,0.06);
+}
+
+/* TOP SHINE */
+
+.stab::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.02) 18%,
+      transparent 40%
+    );
+
+  pointer-events:none;
+}
+
+/* CYAN LIGHT BLOOM */
+
+.stab::after{
+  content:"";
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  top:-120px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(56,216,255,0.26),
+      transparent 72%
+    );
+
+  opacity:.85;
+
+  pointer-events:none;
+}
+
+/* HOVER */
+
+.stab:hover{
+  transform:
+    translateY(-6px)
+    scale(1.02);
+
+  border-color:
+    rgba(56,216,255,0.38);
+
+  box-shadow:
+    0 0 0 1px rgba(56,216,255,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 40px rgba(56,216,255,0.16),
+    0 0 90px rgba(56,216,255,0.08),
+    0 20px 55px rgba(0,0,0,0.55);
+}
+
+.stab:hover::after{
+  transform:scale(1.2);
+  opacity:1;
+}
+
+.stab-top{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 5px;
+}
+
+.stab-icon{
+  width:68px;
+  height:68px;
+
+  display:grid;
+  place-items:center;
+
+  background:none;
+  border:none;
+  box-shadow:none;
+
+  flex-shrink:0;
+}
+
+.stab-icon svg{
+  width:65px;
+  height:65px;
+
+  stroke:#56e6ff;
+
+  filter:
+    drop-shadow(0 0 10px rgba(56,216,255,.9))
+    drop-shadow(0 0 24px rgba(56,216,255,.55))
+    drop-shadow(0 0 44px rgba(56,216,255,.25));
+
+  transition:.35s ease;
+}
+/* HOVER GLOW */
+
+
+.stab:hover{
+  transform:
+    translateY(-8px)
+    scale(1.025);
+
+  border-color:rgba(56,216,255,0.42);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.08),
+    inset 0 -30px 60px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(56,216,255,0.10),
+    0 18px 55px rgba(0,0,0,0.55),
+    0 0 90px rgba(56,216,255,0.16);
+}
+
+.stab:hover .stab-icon svg{
+  transform:scale(1.08);
+
+  filter:
+    drop-shadow(0 0 14px rgba(56,216,255,1))
+    drop-shadow(0 0 32px rgba(56,216,255,.7))
+    drop-shadow(0 0 60px rgba(56,216,255,.35));
+}
+.stab h3{
+  font-family:var(--font-h);
+  font-size:.9rem;
+  font-weight:700;
+  text-transform:uppercase;
+
+  margin:0;
+}
+
+.stab p{
+  font-size:.82rem;
+  line-height:1.5;
+  color:var(--muted);
+
+  margin-top: 5px;
+}
+
+    /* center col */
+    .center-col { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    .icons-strip { display: flex; align-items: center; gap: 22px; justify-content: center; flex-wrap: wrap; }
+    .icon-pill { display: flex; flex-direction: column; align-items: center; gap: 7px; transition: transform 0.25s; }
+    .icon-pill:hover { transform: translateY(-3px); }
+    .icon-pill .ipic { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 30% 30%,rgba(56,216,255,0.22),rgba(20,130,255,0.05)); border: 1px solid rgba(56,216,255,0.22); box-shadow: 0 0 20px rgba(56,216,255,0.15); display: grid; place-items: center; }
+    .icon-pill .ipic svg { width: 35px; height: 35px; }
+    .icon-pill span { font-size: 0.67rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+    .tagline { font-family: var(--font-h); font-size: clamp(0.95rem,1.3vw,1.1rem); font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-align: center; }
+    .tagline strong { color: var(--cyan); text-shadow: 0 0 14px rgba(56,216,255,0.35); }
+    .glow-rule { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: min(70%,900px); height: 1px; background: linear-gradient(90deg,transparent,rgba(56,216,255,0.6),transparent); box-shadow: 0 0 18px rgba(56,216,255,0.3); }
+
+    /* ══════════════════════════════
+       SECTIONS SHARED
+    ══════════════════════════════ */
+    section { position: relative; z-index: 1; }
+    .sec-wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px,4vw,0px); }
+    .section-head { text-align: center; margin-bottom: 52px; }
+    .section-head .label { display: inline-block; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
+    .section-head h2 { font-family: var(--font-h); font-size: clamp(1.75rem,3vw,2.75rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .section-head h2 em { font-style: normal; color: var(--cyan); }
+    .section-head p { margin-top: 12px; font-size: 0.97rem; color: var(--muted); max-width: 52ch; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .section-pad { padding: 50px 0; }
+
+    /* card shared */
+    .card {
+      position: relative; border-radius: var(--rL);
+      background: rgba(4,13,28,0.72);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+    .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(56,216,255,0.45),transparent); opacity: 0; transition: opacity 0.3s; }
+    .card:hover { transform: translateY(-5px); border-color: rgba(56,216,255,0.26); box-shadow: 0 22px 55px rgba(0,0,0,0.45), 0 0 22px rgba(56,216,255,0.10); }
+    .card:hover::before { opacity: 1; }
+
+    .card-icon { width: 58px; height: 58px; border-radius: 15px; background: radial-gradient(circle at 30% 30%,rgba(56,216,255,0.22),rgba(20,130,255,0.06)); border: 1px solid rgba(56,216,255,0.20); box-shadow: 0 0 22px rgba(56,216,255,0.14); display: grid; place-items: center; flex-shrink: 0; }
+    .card-icon svg { width: 26px; height: 26px; }
+    .tag-pill { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cyan); border: 1px solid rgba(56,216,255,0.24); padding: 3px 11px; border-radius: 999px; background: rgba(56,216,255,0.06); margin-top: 16px; }
+
+    /* ── SERVICES GRID ── */
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .scard-body { padding: 28px 24px; }
+    .scard-body h3 { font-family: var(--font-h); font-size: 0.97rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 16px 0 9px; }
+    .scard-body p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+    .scard-list { margin-top: 14px; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .scard-list li { font-size: 0.8rem; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.45; }
+    .scard-list li::before { content: "▸"; position: absolute; left: 0; color: var(--cyan); font-size: 0.7rem; top: 1px; }
+
+    /* ── TECH STACK ── */
+    .tech-hex-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .tech-card { padding: 24px 20px; border-radius: var(--r); }
+    .tech-card h4 { font-family: var(--font-h); font-size: 0.9rem; font-weight: 700; color: var(--cyan); margin: 12px 0 6px; }
+    .tech-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── SOLUTIONS (products) ── */
+    .solutions-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; }
+    .sol-card { padding: 28px 26px; }
+    .sol-card .sol-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .sol-brand-icon { width: 50px; height: 50px; border-radius: 14px; background: radial-gradient(circle at 30% 30%,rgba(56,216,255,0.22),rgba(20,130,255,0.06)); border: 1px solid rgba(56,216,255,0.20); display: grid; place-items: center; flex-shrink: 0; }
+    .sol-brand-icon svg { width: 24px; height: 24px; }
+    .sol-card .sol-name { font-family: var(--font-h); font-size: 1.3rem; font-weight: 800; }
+    .sol-card .sol-name span { color: var(--cyan); }
+    .sol-card .sol-tagline { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .sol-card h4 { font-family: var(--font-h); font-size: 0.85rem; font-weight: 700; color: var(--cyan); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+    .sol-card p { font-size: 0.855rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 12px; margin-top: 12px; }
+    .feat-grid span { font-size: 0.78rem; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
+    .feat-grid span::before { content: "▸"; position: absolute; left: 0; color: var(--teal); font-size: 0.65rem; top: 2px; }
+
+    /* ── WHY CHOOSE ── */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+    .why-left, .why-right { display: flex; flex-direction: column; gap: 30px; }
+    .why-item { display: flex; align-items: flex-start; gap: 14px; padding: 18px 18px; border-radius: var(--r); background: rgba(4,13,28,0.65); border: 1px solid var(--line); transition: border-color 0.25s; }
+    .why-item:hover { border-color: rgba(56,216,255,0.26); }
+    .why-item .wi-icon { width: 40px; height: 40px; border-radius: 11px; background: radial-gradient(circle at 30% 30%,rgba(56,216,255,0.20),rgba(20,130,255,0.05)); border: 1px solid rgba(56,216,255,0.18); display: grid; place-items: center; flex-shrink: 0; }
+    .why-item .wi-icon svg { width: 18px; height: 18px; }
+    .why-item h4 { font-family: var(--font-h); font-size: 0.82rem; font-weight: 700; color: var(--cyan); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .why-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* emerging tech */
+    .emerging-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; }
+    .em-card { padding: 20px 14px; text-align: center; border-radius: var(--r); background: rgba(4,13,28,0.68); border: 1px solid var(--line); transition: transform 0.25s, border-color 0.25s; }
+    .em-card:hover { transform: translateY(-3px); border-color: rgba(56,216,255,0.28); }
+    .em-card .em-ico { width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 30% 30%,rgba(56,216,255,0.20),rgba(20,130,255,0.05)); border: 1px solid rgba(56,216,255,0.18); display: grid; place-items: center; margin: 0 auto 10px; }
+    .em-card .em-ico svg { width: 22px; height: 22px; }
+    .em-card h4 { font-family: var(--font-h); font-size: 0.8rem; font-weight: 700; color: var(--cyan); margin-bottom: 4px; }
+    .em-card p { font-size: 0.73rem; color: var(--muted); line-height: 1.4; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      position: relative; z-index: 1;
+      background: linear-gradient(90deg, rgba(4,14,30,0.95), rgba(6,20,42,0.95));
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      padding: 36px clamp(16px,4vw,60px);
+      margin-top: 5%;
+    }
+    .stats-inner { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 24px; }
+    .stat-item { text-align: center; }
+    .stat-item .snum { font-family: var(--font-h); font-size: 2.4rem; font-weight: 800; color: var(--cyan); text-shadow: 0 0 22px rgba(56,216,255,0.4); line-height: 1; }
+    .stat-item .sdesc { font-size: 0.8rem; color: var(--muted); margin-top: 5px; letter-spacing: 0.05em; }
+
+    /* ── ABOUT ── */
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-img { position: relative; border-radius: var(--rL); overflow: hidden; border: 1px solid var(--line); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .about-img img { width: 100%; display: block; filter: saturate(1.08) brightness(0.92); }
+    .about-img::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 85%,rgba(56,216,255,0.14),transparent 55%); pointer-events: none; }
+    .about-text .label { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; display: block; }
+    .about-text h2 { font-family: var(--font-h); font-size: clamp(1.75rem,2.5vw,2.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 18px; }
+    .about-text h2 span { color: var(--cyan); }
+    .about-text p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+    .presence-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .presence-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--muted); }
+    .presence-item::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px rgba(56,216,255,0.6); flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .contact-form { display: grid; gap: 15px; text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%; padding: 13px 17px;
+      background: rgba(4,13,28,0.75); border: 1px solid var(--line);
+      border-radius: var(--r); color: var(--text);
+      font-family: var(--font-b); font-size: 0.88rem;
+      outline: none; transition: border-color 0.25s, box-shadow 0.25s;
+      -webkit-appearance: none;
+    }
+    .contact-form select option { background: var(--bg2); }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(200,230,255,0.28); }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { border-color: rgba(56,216,255,0.45); box-shadow: 0 0 0 3px rgba(56,216,255,0.08); }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 13px 34px; border-radius: 999px;
+      background: linear-gradient(135deg,rgba(56,216,255,0.22),rgba(20,130,255,0.16));
+      border: 1px solid rgba(56,216,255,0.38); color: var(--cyan3);
+      font-family: var(--font-h); font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; box-shadow: 0 0 26px rgba(56,216,255,0.14);
+      transition: all 0.25s ease; text-decoration: none;
+    }
+    .btn-primary:hover { background: linear-gradient(135deg,rgba(56,216,255,0.32),rgba(20,130,255,0.26)); border-color: rgba(56,216,255,0.55); box-shadow: 0 0 38px rgba(56,216,255,0.28); transform: translateY(-2px); }
+
+    /* ── OFFICES ── */
+    .offices-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .office-card { padding: 24px 20px; text-align: center; border-radius: var(--r); background: rgba(4,13,28,0.7); border: 1px solid var(--line); transition: transform 0.25s, border-color 0.25s; }
+    .office-card:hover { transform: translateY(-3px); border-color: rgba(56,216,255,0.28); }
+    .office-card .flag { font-size: 2rem; margin-bottom: 10px; }
+    .office-card h4 { font-family: var(--font-h); font-size: 0.85rem; font-weight: 700; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .office-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer { position: relative; z-index: 1; padding: 36px clamp(16px,4vw,60px); border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .copy { font-size: 0.8rem; color: rgba(200,230,255,0.38); }
+    footer .flinks { display: flex; gap: 22px; flex-wrap: wrap; }
+    footer .flinks a { text-decoration: none; font-size: 0.8rem; color: rgba(200,230,255,0.42); transition: color 0.2s; }
+    footer .flinks a:hover { color: var(--cyan); }
+    footer .fcontact { font-size: 0.8rem; color: rgba(200,230,255,0.42); }
+    footer .fcontact a { color: var(--cyan); text-decoration: none; }
+
+    /* divider */
+    .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--cyan), var(--teal)); border-radius: 3px; margin: 16px auto 0; }
+
+    /* alt bg stripe */
+    .stripe { background: linear-gradient(180deg, transparent, rgba(8,20,42,0.5), transparent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.vis { opacity:1; transform:translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1080px){
+      .three-col{grid-template-columns:220px 1fr 220px;gap:14px;}
+      .stab p{margin-left:0;margin-top:5px;}
+      .services-grid,.tech-hex-grid{grid-template-columns:repeat(2,1fr);}
+      .emerging-grid{grid-template-columns:repeat(3,1fr);}
+      .about-inner{grid-template-columns:1fr;}
+      .solutions-grid{grid-template-columns:1fr;}
+      .why-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:860px){
+      nav{display:none;} .hamburger{display:flex;}
+      .three-col{grid-template-columns:1fr;}
+      .service-col{display:grid;grid-template-columns:1fr 1fr;}
+      .offices-grid{grid-template-columns:repeat(2,1fr);}
+      .form-row{grid-template-columns:1fr;}
+    }
+    @media(max-width:560px){
+      .service-col{grid-template-columns:1fr;}
+      .services-grid,.tech-hex-grid,.solutions-grid,.emerging-grid{grid-template-columns:1fr;}
+      .offices-grid{grid-template-columns:1fr 1fr;}
+      .about-inner{gap:32px;}
+      .feat-grid{grid-template-columns:1fr;}
+      .presence-list{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<div class="amb"></div>
+<div class="grid-bg"></div>
+
+<!-- ═══ HEADER ═══ -->
+<header id="hdr">
+  <a href="#" class="logo-wrap">
+    <div class="logo-wordmark">
+      <img src="https://www.ardhas.com/img/logo.svg" alt="">
+    </div>
+  </a>
+
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#about">About</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact" class="nav-cta">Contact Us</a>
+  </nav>
+  <button class="hamburger" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="mob-nav" id="mobNav">
+  <a href="#services" onclick="closeNav()">Services</a>
+  <a href="#solutions" onclick="closeNav()">Solutions</a>
+  <a href="#about" onclick="closeNav()">About</a>
+  <a href="#why" onclick="closeNav()">Why Us</a>
+  <a href="#contact" onclick="closeNav()">Contact Us</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-img-bg">
+    <img src="ai-image.png" alt="" aria-hidden="true"/>
+  </div>
+
+  <div class="hero-head">
+    <div class="eyebrow">AI-Powered · Future-Ready · Trusted Since 2012</div>
+    <h1>Intelligent Solutions.<br><span>Limitless Possibilities.</span></h1>
+    <p class="sub">Connected Future &nbsp;·&nbsp; AI-Powered Innovation</p>
+  </div>
+
+  <div class="three-col">
+    <!-- LEFT -->
+    <div class="service-col">
+      <div class="stab">
+        <div class="stab-top">
+          <div class="stab-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.66z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.66z"/></svg>
+          </div>
+          <h3>AI Solutions</h3>
+        </div>
+        <p>Smarter Automation</p>
+      </div>
+      <div class="stab">
+        <div class="stab-top">
+          <div class="stab-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+          </div>
+          <h3>Cloud Services</h3>
+        </div>
+        <p>Scalable. Secure. Reliable.</p>
+      </div>
+      <div class="stab">
+        <div class="stab-top">
+          <div class="stab-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Cybersecurity</h3>
+        </div>
+        <p>Protect What Matters</p>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="service-col">
+      <div class="stab">
+        <div class="stab-top">
+          <div class="stab-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+          </div>
+          <h3>Data Analytics</h3>
+        </div>
+        <p>Insights that Drive Growth</p>
+      </div>
+      <div class="stab">
+        <div class="stab-top">
+          <div class="stab-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Software Development</h3>
+        </div>
+        <p>Custom. Agile. Innovative.</p>
+      </div>
+      <div class="stab">
+        <div class="stab-top">
+          <div class="stab-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="var(--cyan3)"/></svg>
+          </div>
+          <h3>Digital Transformation</h3>
+        </div>
+        <p>Future Ready Solutions</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="glow-rule"></div>
+</section>
+
+<section>
+    <div style="padding-top: 20px;" class="center-col">
+      <div class="icons-strip">
+        <div class="icon-pill">
+          <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8a6 6 0 1 0-12 0c0 1.45.57 2.75 1.5 3.75C8.26 12.26 8.73 13.02 8.91 14"/></svg></div>
+          <span>Innovate</span>
+        </div>
+        <div class="icon-pill">
+          <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <span>Automate</span>
+        </div>
+        <div class="icon-pill">
+          <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+          <span>Accelerate</span>
+        </div>
+        <div class="icon-pill">
+          <div class="ipic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <span>Evolve</span>
+        </div>
+      </div>
+      <p class="tagline">Your Trusted <strong>Technology Partner</strong></p>
+    </div>
+</section>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="snum">15+</div><div class="sdesc">Years of Excellence</div></div>
+    <div class="stat-item"><div class="snum">500+</div><div class="sdesc">Global Clients</div></div>
+    <div class="stat-item"><div class="snum">100+</div><div class="sdesc">Skilled Professionals</div></div>
+    <div class="stat-item"><div class="snum">24×7</div><div class="sdesc">Support & Maintenance</div></div>
+    <div class="stat-item"><div class="snum">4</div><div class="sdesc">Global Offices</div></div>
+    <div class="stat-item"><div class="snum">ISO</div><div class="sdesc">9001 · 27001 Certified</div></div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="services" class="section-pad">
+  <div class="sec-wrap">
+    <div class="section-head fade-up">
+      <div class="label">Our Services</div>
+      <h2>End-to-End <em>Digital Solutions</em></h2>
+      <div class="divider"></div>
+      <p>Accelerating your business with intelligent, scalable, and secure technology services.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="card fade-up">
+        <div class="scard-body">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Digital Engineering</h3>
+          <p>Custom-built digital solutions designed to solve complex business challenges and drive growth.</p>
+          <ul class="scard-list">
+            <li>Custom Software Development</li>
+            <li>Mobile App Development</li>
+            <li>Web Application Development</li>
+            <li>E-commerce App Development</li>
+            <li>Data Science / Business Intelligence</li>
+            <li>Artificial Intelligence</li>
+          </ul>
+          <span class="tag-pill">Solve · Scale · Grow</span>
+        </div>
+      </div>
+
+      <div class="card fade-up" style="transition-delay:0.08s">
+        <div class="scard-body">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>Product Engineering</h3>
+          <p>Innovative, scalable, and secure products built with the latest technologies and industry best practices.</p>
+          <ul class="scard-list">
+            <li>Quality Control</li>
+            <li>Process Improvement</li>
+            <li>Risk Management</li>
+            <li>Verification and Validation</li>
+            <li>Test Cases</li>
+          </ul>
+          <span class="tag-pill">Innovative · Scalable · Secure</span>
+        </div>
+      </div>
+
+      <div class="card fade-up" style="transition-delay:0.16s">
+        <div class="scard-body">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+          </div>
+          <h3>Digital Marketing</h3>
+          <p>Data-driven strategies that build brand visibility, engage audiences, and deliver measurable ROI.</p>
+          <ul class="scard-list">
+            <li>UI/UX Design</li>
+            <li>SEO / SEM</li>
+            <li>Social Media Marketing</li>
+            <li>Email Marketing</li>
+            <li>Analytics and Reporting</li>
+          </ul>
+          <span class="tag-pill">Visibility · Engage · Convert</span>
+        </div>
+      </div>
+
+      <div class="card fade-up" style="transition-delay:0.24s">
+        <div class="scard-body">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+          </div>
+          <h3>Cloud Services</h3>
+          <p>Secure, reliable, and scalable cloud solutions to modernize your infrastructure and optimize operations.</p>
+          <ul class="scard-list">
+            <li>Infrastructure as a Service</li>
+            <li>Platform as a Service</li>
+            <li>Software as a Service</li>
+            <li>Security Audits and Compliance</li>
+            <li>Vulnerability Management</li>
+          </ul>
+          <span class="tag-pill">AWS · Azure · GCP</span>
+        </div>
+      </div>
+
+      <div class="card fade-up" style="transition-delay:0.32s">
+        <div class="scard-body">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.66z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.66z"/></svg>
+          </div>
+          <h3>AI &amp; Data Science</h3>
+          <p>Intelligent solutions built on Python, TensorFlow, PyTorch, Scikit-learn, and Pandas that learn, adapt and deliver real impact.</p>
+          <ul class="scard-list">
+            <li>Machine Learning Models</li>
+            <li>Generative AI Integration</li>
+            <li>Predictive Analytics</li>
+            <li>NLP &amp; Computer Vision</li>
+            <li>MLOps &amp; Model Deployment</li>
+          </ul>
+          <span class="tag-pill">AI-First Approach</span>
+        </div>
+      </div>
+
+      <div class="card fade-up" style="transition-delay:0.40s">
+        <div class="scard-body">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="var(--cyan3)"/></svg>
+          </div>
+          <h3>Digital Transformation</h3>
+          <p>Future-ready solutions that modernize legacy operations, streamline processes, and position your enterprise for the AI era.</p>
+          <ul class="scard-list">
+            <li>Legacy System Modernization</li>
+            <li>IoT &amp; Connected Platforms</li>
+            <li>Process Automation (RPA)</li>
+            <li>Enterprise Integration</li>
+            <li>Change Management</li>
+          </ul>
+          <span class="tag-pill">Future-Ready Solutions</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECH STACK ═══ -->
+<section class="section-pad stripe">
+  <div class="sec-wrap">
+    <div class="section-head fade-up">
+      <div class="label">Tech Stack Overview</div>
+      <h2>Modern Technologies Powering <em>Intelligent Solutions</em></h2>
+      <div class="divider"></div>
+      <p>Cutting-edge tools and frameworks across every layer of the stack.</p>
+    </div>
+    <div class="tech-hex-grid">
+      <div class="card tech-card fade-up">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.66z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.66z"/></svg></div>
+        <h4>AI &amp; Data Science</h4>
+        <p>Python, TensorFlow, PyTorch, Scikit-learn, Pandas</p>
+      </div>
+      <div class="card tech-card fade-up" style="transition-delay:0.06s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+        <h4>Backend</h4>
+        <p>Node.js, Python, Java, .NET Core, Go (Golang)</p>
+      </div>
+      <div class="card tech-card fade-up" style="transition-delay:0.12s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h4>Mobile</h4>
+        <p>Flutter, React Native, Kotlin (Android), Swift (iOS)</p>
+      </div>
+      <div class="card tech-card fade-up" style="transition-delay:0.18s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h4>Frontend</h4>
+        <p>React, Angular, Vue.js, Next.js</p>
+      </div>
+      <div class="card tech-card fade-up" style="transition-delay:0.24s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <h4>Database</h4>
+        <p>PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch</p>
+      </div>
+      <div class="card tech-card fade-up" style="transition-delay:0.30s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg></div>
+        <h4>Cloud &amp; DevOps</h4>
+        <p>AWS, Azure, GCP, Docker, Kubernetes, Terraform, CI/CD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OUR SOLUTIONS (Products) ═══ -->
+<section id="solutions" class="section-pad">
+  <div class="sec-wrap">
+    <div class="section-head fade-up">
+      <div class="label">Our Solutions</div>
+      <h2>Intelligent Solutions. <em>Real Impact.</em></h2>
+      <div class="divider"></div>
+      <p>AI-powered products built for modern enterprises — each solving a critical domain challenge.</p>
+    </div>
+    <div class="solutions-grid">
+
+      <div class="card sol-card fade-up">
+        <div class="sol-brand">
+          <div class="sol-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <div>
+            <div class="sol-name"><span>Neo</span>EHS</div>
+            <div class="sol-tagline">Shaping the Future of EHS with AI</div>
+          </div>
+        </div>
+        <h4>AI-Powered EHS &amp; ESG Solution</h4>
+        <p>A comprehensive, integrated suite for proactively managing environmental health, safety, and sustainability — all in one place.</p>
+        <div class="feat-grid">
+          <span>Real-Time Risk Detection</span><span>Carbon Footprint Tracking</span>
+          <span>Automated Compliance Mgmt</span><span>Intelligent Incident Mgmt</span>
+          <span>Computer Vision (BBS)</span><span>Smart Resource Optimization</span>
+          <span>Predictive Analytics</span><span>ESG Performance Reporting</span>
+        </div>
+      </div>
+
+      <div class="card sol-card fade-up" style="transition-delay:0.1s">
+        <div class="sol-brand">
+          <div class="sol-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+          <div>
+            <div class="sol-name"><span>Sphera</span> AIMS</div>
+            <div class="sol-tagline">Asset Integrity Management System</div>
+          </div>
+        </div>
+        <h4>AI-Driven Medical &amp; Industrial Asset Management</h4>
+        <p>From acquisition to disposal, our AI-driven system intelligently tracks, monitors, and optimizes the entire lifecycle of your assets.</p>
+        <div class="feat-grid">
+          <span>Intelligent Asset Tracking</span><span>AI-Powered Utilization Analytics</span>
+          <span>Predictive Maintenance</span><span>Vendor &amp; Warranty Mgmt</span>
+          <span>Automated Lifecycle Mgmt</span><span>Risk &amp; Failure Prediction</span>
+          <span>Smart Inventory Optimization</span><span>Real-Time Dashboards</span>
+        </div>
+      </div>
+
+      <div class="card sol-card fade-up" style="transition-delay:0.2s">
+        <div class="sol-brand">
+          <div class="sol-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <div>
+            <div class="sol-name"><span>Neo</span>LMS</div>
+            <div class="sol-tagline">AI-Powered e-Learning System</div>
+          </div>
+        </div>
+        <h4>Smarter Learning. Brighter Future.</h4>
+        <p>An immersive, engaging, and personalized learning experience that adapts to each learner's pace, style, and goals.</p>
+        <div class="feat-grid">
+          <span>Personalized Learning Paths</span><span>Gamification &amp; AI Engagement</span>
+          <span>Intelligent Virtual Tutors</span><span>Seamless Multi-Device Access</span>
+          <span>Smart Performance Analytics</span><span>Third-Party Tool Integration</span>
+          <span>Adaptive Assessments</span><span>AI-Powered Course Recommendations</span>
+        </div>
+      </div>
+
+      <div class="card sol-card fade-up" style="transition-delay:0.3s">
+        <div class="sol-brand">
+          <div class="sol-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <div>
+            <div class="sol-name"><span>Neo</span>DMS</div>
+            <div class="sol-tagline">AI-Powered Document Management System</div>
+          </div>
+        </div>
+        <h4>Smart, Secure &amp; Seamless Document Management</h4>
+        <p>Harnesses AI to automatically organise, intelligently track, and instantly retrieve your critical documents.</p>
+        <div class="feat-grid">
+          <span>Smart Search &amp; Retrieval</span><span>Sentiment &amp; Content Analysis</span>
+          <span>Automated Data Extraction</span><span>Seamless System Integration</span>
+          <span>Intelligent Version Routing</span><span>Smart Access Control</span>
+          <span>AI-Driven Compliance</span><span>Automated Expiry Alerts</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="section-pad stripe">
+  <div class="sec-wrap">
+    <div class="about-inner">
+      <div class="about-img fade-up">
+        <img src="https://www.ids.ac.uk/wp-content/uploads/2025/01/AI-blog-4x600-px.jpg" alt="Ardhas AI Technology"/>
+      </div>
+      <div class="about-text fade-up" style="transition-delay:0.1s">
+        <span class="label">About Ardhas Technology</span>
+        <h2>Innovative <span>AI-Driven</span><br>IT Solutions</h2>
+        <p>Trusted since 2012, Ardhas Technology India Private Limited is a global technology partner delivering intelligent, AI-powered solutions that help businesses automate, innovate and grow.</p>
+        <p>Our AI-first approach, combined with deep domain expertise and agile delivery, enables organizations across industries to not just adopt technology — but lead with it.</p>
+        <div class="presence-list">
+          <div class="presence-item">India — Development Centre</div>
+          <div class="presence-item">Singapore — Regional HQ</div>
+          <div class="presence-item">Malaysia — Kuala Lumpur</div>
+          <div class="presence-item">UAE — Abu Dhabi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY CHOOSE + EMERGING TECH ═══ -->
+<section id="why" class="section-pad">
+  <div class="sec-wrap">
+    <div class="section-head fade-up">
+      <div class="label">Why Choose Ardhas?</div>
+      <h2>Built on Trust. Driven by <em>Innovation.</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="why-item fade-up">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.66z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.66z"/></svg></div>
+          <div><h4>AI-Powered Innovation</h4><p>Intelligent solutions that learn, adapt and deliver real impact across every engagement.</p></div>
+        </div>
+        <div class="why-item fade-up" style="transition-delay:0.06s">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div><h4>Domain Expertise</h4><p>Deep industry knowledge and proven best practices across verticals from healthcare to finance.</p></div>
+        </div>
+        <div class="why-item fade-up" style="transition-delay:0.12s">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <div><h4>Agile Delivery</h4><p>Flexible, transparent, and on-time delivery with agile methodology and continuous collaboration.</p></div>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="why-item fade-up" style="transition-delay:0.06s">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><h4>Dedicated Support</h4><p>Round-the-clock support from 100+ experienced professionals backed by SLA guarantees.</p></div>
+        </div>
+        <div class="why-item fade-up" style="transition-delay:0.12s">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><h4>Quality &amp; Security</h4><p>ISO 9001, ISO 27001 &amp; CMMI certified processes ensuring the highest standards of quality and security.</p></div>
+        </div>
+        <div class="why-item fade-up" style="transition-delay:0.18s">
+          <div class="wi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div><h4>Global Reach</h4><p>Local presence in 4 countries with global delivery excellence — India, Singapore, Malaysia, UAE.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emerging Tech -->
+    <div style="margin-top:64px;">
+      <div class="section-head fade-up">
+        <div class="label">Next-Gen Technologies</div>
+        <h2>Emerging &amp; <em>Future Technologies</em></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="emerging-grid">
+        <div class="em-card fade-up">
+          <div class="em-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.66z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.66z"/></svg></div>
+          <h4>Generative AI</h4>
+          <p>OpenAI, LLMs</p>
+        </div>
+        <div class="em-card fade-up" style="transition-delay:0.06s">
+          <div class="em-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <h4>Vector Databases</h4>
+          <p>Pinecone, Weaviate</p>
+        </div>
+        <div class="em-card fade-up" style="transition-delay:0.12s">
+          <div class="em-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h4>MLOps</h4>
+          <p>MLFlow, Kubeflow</p>
+        </div>
+        <div class="em-card fade-up" style="transition-delay:0.18s">
+          <div class="em-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+          <h4>Blockchain</h4>
+          <p>Hyperledger, Solidity</p>
+        </div>
+        <div class="em-card fade-up" style="transition-delay:0.24s">
+          <div class="em-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="var(--cyan3)"/></svg></div>
+          <h4>IoT Platforms</h4>
+          <p>AWS IoT, Azure IoT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OFFICES ═══ -->
+<section class="section-pad stripe">
+  <div class="sec-wrap">
+    <div class="section-head fade-up">
+      <div class="label">Global Presence</div>
+      <h2>Local Expertise. <em>Global Reach.</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="offices-grid">
+      <div class="office-card fade-up">
+        <div class="flag">🇮🇳</div>
+        <h4>India</h4>
+        <p>Ground Floor, Tower B, Keeranatham Rd, KGiSL SEZ IT Park, Saravanampatti, Coimbatore, Tamil Nadu 641035</p>
+      </div>
+      <div class="office-card fade-up" style="transition-delay:0.08s">
+        <div class="flag">🇸🇬</div>
+        <h4>Singapore</h4>
+        <p>B38 Beach Road, #29-11 South Beach Tower, Singapore 189767</p>
+      </div>
+      <div class="office-card fade-up" style="transition-delay:0.16s">
+        <div class="flag">🇲🇾</div>
+        <h4>Malaysia</h4>
+        <p>Block D1, Level 1, D-1-9, 1, Jln Dutamas 1, Solaris Dutamas, 50480 Kuala Lumpur</p>
+      </div>
+      <div class="office-card fade-up" style="transition-delay:0.24s">
+        <div class="flag">🇦🇪</div>
+        <h4>UAE</h4>
+        <p>1st Floor, Omeir Bin Youssef Building, Hamdan Bin Mohammed St, 412 Al Danah, Abu Dhabi - 22214</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="section-pad">
+  <div class="sec-wrap">
+    <div class="contact-inner">
+      <div class="section-head fade-up">
+        <div class="label">Get In Touch</div>
+        <h2>Let's Build Something <em>Remarkable</em></h2>
+        <div class="divider"></div>
+        <p style="margin-bottom:36px">Tell us what you're trying to solve. Our team responds within one business day.</p>
+      </div>
+      <form class="contact-form fade-up" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" required/>
+          <input type="email" placeholder="Work Email" required/>
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="Company"/>
+          <select>
+            <option value="" disabled selected>Service Interest</option>
+            <option>Digital Engineering</option>
+            <option>Product Engineering</option>
+            <option>Digital Marketing</option>
+            <option>Cloud Services</option>
+            <option>AI &amp; Data Science</option>
+            <option>Digital Transformation</option>
+            <option>NeoEHS</option>
+            <option>Sphera AIMS</option>
+            <option>NeoLMS</option>
+            <option>NeoDMS</option>
+          </select>
+        </div>
+        <textarea placeholder="Tell us about your project or challenge…"></textarea>
+        <div style="text-align:center;margin-top:8px">
+          <button type="submit" class="btn-primary" id="submitBtn">
+            Send Message
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <a href="#" class="logo-wrap" style="gap:8px">
+    <svg class="logo-svg-globe" viewBox="0 0 52 52" fill="none" style="width:32px;height:32px">
+      <circle cx="26" cy="26" r="22" stroke="#38d8ff" stroke-width="1.6" fill="none" opacity="0.5"/>
+      <ellipse cx="26" cy="26" rx="22" ry="9" stroke="#38d8ff" stroke-width="1.2" fill="none" opacity="0.45"/>
+      <path d="M26 4 Q38 26 26 48" stroke="#38d8ff" stroke-width="1.2" fill="none" opacity="0.45"/>
+      <path d="M26 4 Q14 26 26 48" stroke="#38d8ff" stroke-width="1.2" fill="none" opacity="0.45"/>
+      <line x1="4" y1="26" x2="48" y2="26" stroke="#38d8ff" stroke-width="1" opacity="0.3"/>
+      <circle cx="26" cy="8" r="2" fill="#3de8a0"/>
+      <circle cx="26" cy="26" r="3" fill="#38d8ff" opacity="0.8"/>
+    </svg>
+    <div class="logo-wordmark">
+      <div class="brand-name" style="font-size:1rem"><span class="brand-a">A</span>RDHAS</div>
+      <div class="brand-sub" style="font-size:0.5rem">T E C H N O L O G Y</div>
+    </div>
+  </a>
+  <div class="fcontact">
+    <a href="mailto:info@ardhas.com">info@ardhas.com</a> &nbsp;·&nbsp;
+    <a href="tel:+917094422114">+91-70944 22114</a> &nbsp;·&nbsp;
+    <a href="https://www.ardhas.com" target="_blank">www.ardhas.com</a>
+  </div>
+  <div class="flinks">
+    <a href="#services">Services</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <span class="copy">© 2026 Ardhas Technology India Private Limited. All rights reserved.</span>
+</footer>
+
+<script>
+  function toggleNav(){ document.getElementById('mobNav').classList.toggle('open'); }
+  function closeNav(){ document.getElementById('mobNav').classList.remove('open'); }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  function handleForm(e){
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = '✓  Message Sent!';
+    btn.style.background = 'linear-gradient(135deg,rgba(56,216,255,0.28),rgba(20,180,80,0.22))';
+    btn.style.borderColor = 'rgba(56,216,255,0.55)';
+    setTimeout(() => {
+      btn.innerHTML = 'Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+      btn.style.background = ''; btn.style.borderColor = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  const hdr = document.getElementById('hdr');
+  window.addEventListener('scroll', () => {
+    hdr.style.borderBottomColor = window.scrollY > 40 ? 'rgba(56,216,255,0.20)' : 'rgba(56,216,255,0.10)';
+  }, { passive: true });
+</script>
+</body>
+</html>

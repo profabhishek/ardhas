@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Solutions Hero Design</title>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-2: #07111f;
+      --panel: rgba(10, 20, 34, 0.62);
+      --panel-strong: rgba(8, 16, 30, 0.82);
+      --line: rgba(71, 204, 255, 0.32);
+      --text: #eaf7ff;
+      --muted: rgba(234, 247, 255, 0.72);
+      --cyan: #45d7ff;
+      --cyan-2: #1fb8ff;
+      --cyan-3: #67f0ff;
+      --glow: 0 0 40px rgba(69, 215, 255, 0.22);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(59, 161, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 50% 50%, rgba(33, 198, 255, 0.09), transparent 32%),
+        linear-gradient(180deg, #02060d 0%, var(--bg) 35%, #030913 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.05), transparent 8%),
+        radial-gradient(circle at 50% 0%, rgba(123, 228, 255, 0.1), transparent 28%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .grid-noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background-image:
+        linear-gradient(rgba(104, 217, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(104, 217, 255, 0.08) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle at center, black 52%, transparent 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero {
+      width: min(1440px, 100%);
+      position: relative;
+      border-radius: calc(var(--radius) + 10px);
+      padding: 24px;
+      background:
+        linear-gradient(180deg, rgba(22, 33, 56, 0.68), rgba(6, 13, 24, 0.84));
+      border: 1px solid rgba(113, 229, 255, 0.16);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(69, 215, 255, 0.24), transparent 16%),
+        radial-gradient(circle at 85% 18%, rgba(69, 215, 255, 0.18), transparent 14%),
+        radial-gradient(circle at 50% 52%, rgba(69, 215, 255, 0.08), transparent 38%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: calc(var(--radius) + 2px);
+      border: 1px solid rgba(88, 214, 255, 0.12);
+      pointer-events: none;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .orb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan-3), var(--cyan-2));
+      box-shadow: 0 0 16px rgba(69, 215, 255, 0.9);
+      flex: 0 0 auto;
+    }
+
+    .brand span {
+      font-size: 0.92rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(234, 247, 255, 0.7);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.92rem;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(111, 229, 255, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      transition: 0.25s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav a:hover {
+      transform: translateY(-1px);
+      background: rgba(69, 215, 255, 0.12);
+      border-color: rgba(69, 215, 255, 0.32);
+      box-shadow: 0 0 0 1px rgba(69, 215, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr minmax(420px, 540px) 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .side {
+      display: grid;
+      gap: 16px;
+      align-content: center;
+      margin-top: -25px;
+    }
+
+    .tab {
+      position: relative;
+      padding: 22px 20px;
+      min-height: 156px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(7, 19, 34, 0.92), rgba(9, 17, 30, 0.74));
+      border: 1px solid rgba(93, 219, 255, 0.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), var(--glow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .tab::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(69, 215, 255, 0.12), transparent 35%),
+        radial-gradient(circle at 20% 20%, rgba(69, 215, 255, 0.10), transparent 30%);
+      pointer-events: none;
+    }
+
+    .tab::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(110, 231, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .tab .icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: radial-gradient(circle at 30% 30%, rgba(103, 240, 255, 0.24), rgba(69, 215, 255, 0.06));
+      border: 1px solid rgba(111, 229, 255, 0.18);
+      box-shadow: 0 0 22px rgba(69, 215, 255, 0.16);
+      margin-bottom: 14px;
+      font-size: 1.4rem;
+    }
+
+    .tab h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tab p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .center {
+      position: relative;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(13, 22, 39, 0.74), rgba(8, 13, 25, 0.9));
+      border: 1px solid rgba(103, 240, 255, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 80px rgba(0, 0, 0, 0.45);
+      padding: 28px 26px 22px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .center::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(69, 215, 255, 0.14), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 22%);
+      pointer-events: none;
+    }
+
+    .headline {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-top: 6px;
+    }
+
+    .headline .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: rgba(234, 247, 255, 0.62);
+    }
+
+    .headline .eyebrow::before,
+    .headline .eyebrow::after {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(103, 240, 255, 0.85), transparent);
+    }
+
+    .headline h1 {
+      margin: 0;
+      font-weight: 800;
+      line-height: 1.05;
+      font-size: clamp(2.1rem, 4vw, 4.4rem);
+      letter-spacing: -0.04em;
+    }
+
+    .headline .accent {
+      color: var(--cyan);
+      text-shadow: 0 0 22px rgba(69, 215, 255, 0.35);
+    }
+
+    .headline .sub {
+      margin: 14px auto 0;
+      max-width: 42ch;
+      font-size: 1rem;
+      color: rgba(234, 247, 255, 0.78);
+      line-height: 1.6;
+    }
+
+    .art {
+      position: relative;
+      place-items: center;
+      padding: 20px 0 10px;
+    }
+
+    .image-frame {
+      width: min(100%, 487px);
+      position: relative;
+      border-radius: 30px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(69, 215, 255, 0.10), rgba(69, 215, 255, 0.03) 42%, transparent 70%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+      border: 1px solid rgba(103, 240, 255, 0.15);
+      box-shadow: 0 0 0 1px rgba(69, 215, 255, 0.04), 0 25px 60px rgba(0,0,0,0.45);
+      overflow: hidden;
+    }
+
+    .image-frame::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at 50% 50%, transparent 48%, rgba(69, 215, 255, 0.16) 100%);
+      pointer-events: none;
+    }
+
+    .robot-art {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 22px;
+      filter: saturate(1.1) contrast(1.03) brightness(0.98);
+      transform: scale(1.01);
+      display: block;
+    }
+
+    .caption {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .caption .quote {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .caption .quote strong {
+      color: var(--cyan);
+      text-shadow: 0 0 16px rgba(69, 215, 255, 0.35);
+    }
+
+    .caption .small {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .bottom-icons {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .mini {
+      text-align: center;
+      padding: 14px 10px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(7, 18, 34, 0.82), rgba(9, 16, 28, 0.5));
+      border: 1px solid rgba(103, 240, 255, 0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .mini .micon {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 30% 30%, rgba(103, 240, 255, 0.22), rgba(69, 215, 255, 0.05));
+      border: 1px solid rgba(111, 229, 255, 0.16);
+      color: var(--cyan-3);
+      font-size: 1rem;
+      box-shadow: 0 0 20px rgba(69, 215, 255, 0.15);
+    }
+
+    .mini span {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(234, 247, 255, 0.76);
+    }
+
+    .footer-line {
+      margin-top: 18px;
+      text-align: center;
+      color: rgba(234, 247, 255, 0.72);
+      font-size: 0.98rem;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-line strong {
+      color: var(--cyan);
+    }
+
+    .glow-ring {
+      position: absolute;
+      inset: auto 50% 12px;
+      width: min(60%, 820px);
+      transform: translateX(-50%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(103, 240, 255, 0.7), transparent);
+      box-shadow: 0 0 24px rgba(69, 215, 255, 0.45);
+      pointer-events: none;
+    }
+
+    @media (max-width: 1180px) {
+      .topbar {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .center {
+        min-height: unset;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 14px;
+      }
+
+      .hero {
+        padding: 14px;
+      }
+
+      .side {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        gap: 8px;
+      }
+
+      .nav a {
+        padding: 9px 12px;
+        font-size: 0.84rem;
+      }
+
+      .center {
+        padding: 18px 14px 16px;
+      }
+
+      .bottom-icons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .image-frame {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="grid-noise"></div>
+
+    <section class="hero" aria-label="AI services hero design">
+      <div class="topbar">
+        <div class="brand"><img src="https://www.ardhas.com/img/logo.svg" alt=""></div>
+        <nav class="nav" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#solutions">Solutions</a>
+          <a href="#industries">Industries</a>
+          <a href="#about">About Us</a>
+          <a href="#careers">Careers</a>
+          <a href="#contact">Contact Us</a>
+        </nav>
+        <div class="brand" style="justify-content:flex-end;"><span>Future-ready delivery</span></div>
+      </div>
+
+      <div class="grid">
+        <aside class="side" id="services">
+          <article class="tab">
+            <div class="icon">🧠</div>
+            <h3>AI Solutions</h3>
+            <p>Smarter automation with intelligent workflows, decision systems, and practical enterprise AI.</p>
+          </article>
+
+          <article class="tab" id="solutions">
+            <div class="icon">☁️</div>
+            <h3>Cloud Services</h3>
+            <p>Scalable, secure infrastructure built for performance, resilience, and deployment sanity.</p>
+          </article>
+
+          <article class="tab">
+            <div class="icon">🛡️</div>
+            <h3>Cybersecurity</h3>
+            <p>Protection architecture that keeps your data, users, and platform from becoming a cautionary tale.</p>
+          </article>
+        </aside>
+
+        <section class="center" id="about">
+          <div class="headline">
+            <div class="eyebrow">AI-POWERED • FUTURE-READY</div>
+          </div>
+
+          <div class="art" aria-label="Robot and brain illustration">
+            <div class="image-frame">
+              <img
+                class="robot-art"
+                src="ai-image.png"
+                alt="Futuristic AI illustration with two robots and a glowing neural brain"
+              />
+            </div>
+          </div>
+
+          <div class="caption">
+            <p class="quote">Your Trusted <strong>Technology Partner</strong></p>
+            <p class="small">Innovate • Automate • Accelerate • Evolve</p>
+          </div>
+
+          <div class="bottom-icons" aria-label="Core capabilities">
+            <div class="mini">
+              <div class="micon">✨</div>
+              <span>Innovate</span>
+            </div>
+            <div class="mini">
+              <div class="micon">⚙️</div>
+              <span>Automate</span>
+            </div>
+            <div class="mini">
+              <div class="micon">🚀</div>
+              <span>Accelerate</span>
+            </div>
+            <div class="mini">
+              <div class="micon">⬆️</div>
+              <span>Evolve</span>
+            </div>
+          </div>
+
+          <div class="footer-line" id="contact">Custom, agile, innovative delivery for modern enterprises.</div>
+        </section>
+
+        <aside class="side" id="industries">
+          <article class="tab">
+            <div class="icon">📊</div>
+            <h3>Data Analytics</h3>
+            <p>Insights that drive growth, sharpen strategy, and turn messy numbers into something useful.</p>
+          </article>
+
+          <article class="tab">
+            <div class="icon">🧩</div>
+            <h3>Software Development</h3>
+            <p>Custom applications designed with clean logic, maintainability, and a suspicious lack of chaos.</p>
+          </article>
+
+          <article class="tab">
+            <div class="icon">🛰️</div>
+            <h3>Digital Transformation</h3>
+            <p>Future-ready solutions that modernize operations without making the whole system cry.</p>
+          </article>
+        </aside>
+      </div>
+
+      <div class="glow-ring"></div>
+    </section>
+  </main>
+</body>
+</html>
